@@ -1,7 +1,7 @@
 /.idea
 /.vscode
 /vendor
-/config
+config
 *.log
 thinkphp
 .env
