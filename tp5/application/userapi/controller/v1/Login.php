@@ -19,8 +19,13 @@ class Login extends UserApi
     protected $no_need_token = [
         'login'
     ];
+
     /**
      * @param Request $request
+     * @throws ParamException
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      * @deng      2019/8/6    23:11
      */
     public function login(Request $request)

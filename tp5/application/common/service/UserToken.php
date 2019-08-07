@@ -64,7 +64,7 @@ class UserToken
                 'open_id' => $open_id,
                 'add_time' => time()
             ];
-            
+
             $userFind = UserModel::create($data);
         }
         //
@@ -77,8 +77,14 @@ class UserToken
 
         $token = $this->grantToken($wxResult);
 
+        if ($userFind->avatar) {
+            $status = true;
+        } else {
+            $status = false;
+        }
+
         $result = [
-            'status' => true,
+            'status' => $status,
             'token' => $token
         ];
 
