@@ -19,33 +19,31 @@ class UserAutograph extends UserApi
 {
     /**
      * @param Request $request
-     * @throws ParamException
      * @deng      2019/8/7    0:20
      */
     public function copy(Request $request)
     {
         $content = $request->param('content');
 
-<<<<<<< HEAD
         if (empty($content)) {
             $this->success();
         }
 
-        $content = json_encode($content);
+        Log::record($content,'demo');
 
-=======
+        $contentJson = json_encode($content);
+
         //  保存到数据库
         $data = [
             'user_id' => $request->user->id,
             'add_time' => time(),
-            'content' => $content,
+            'content' => $contentJson,
             'create_time' => date('Y-m-d H:i:s'),
         ];
+
         UserAutographModel::create($data);
         //  保存到数据库
-        Log::record('-----------------记录copy的内容---------------','demo');
->>>>>>> 4714cd8f8e721c09078937d22fa31f03f0a3229f
-        Log::record($content,'demo');
+
         //  验证是否格式正确
 //        $content = '特3456书yuuo莞6543李zxcz蒜7782法fgnv级完2347全dfji试3726测asad感3847知qwez到';
 
