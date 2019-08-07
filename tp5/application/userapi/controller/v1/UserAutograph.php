@@ -30,6 +30,7 @@ class UserAutograph extends UserApi
         $data = [
             'user_id' => $request->user->id,
             'add_time' => time(),
+            'content' => $content,
             'create_time' => date('Y-m-d H:i:s'),
         ];
         UserAutographModel::create($data);
