@@ -61,7 +61,8 @@ class UserToken
         if (!$userFind) {
             //  openid不存在时，新增一条
             $data = [
-                'open_id' => $open_id
+                'open_id' => $open_id,
+                'add_time' => time()
             ];
             $userFind = UserModel::create($data);
         }
