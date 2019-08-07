@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="72ddb712-c1e9-4375-a7aa-caece395cc9d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/tp5/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/tp5/.gitignore" afterDir="false" />
-    </list>
+    <list default="true" id="72ddb712-c1e9-4375-a7aa-caece395cc9d" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +38,7 @@
         <entry file="file://$PROJECT_DIR$/tp5/runtime/log/201908/07.log">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="182">
-              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+              <caret line="4" selection-start-line="4" selection-end-line="4" />
             </state>
           </provider>
         </entry>
@@ -48,8 +46,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tp5/application/userapi/controller/v1/UserAutograph.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="27" column="23" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="23" />
+            <state relative-caret-position="235">
+              <caret line="29" column="84" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="84" />
               <folding>
                 <element signature="e#125#165#0#PHP" expanded="true" />
               </folding>
@@ -60,26 +58,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tp5/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="78">
-              <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+            <state relative-caret-position="208">
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tp5/config/log.php">
+        <entry file="file://$PROJECT_DIR$/tp5/config/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tp5/config/app.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
-              <caret line="131" column="20" selection-start-line="131" selection-start-column="20" selection-end-line="131" selection-end-column="20" />
+            <state relative-caret-position="26">
+              <caret line="1" column="11" lean-forward="true" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -157,36 +146,6 @@
               <item name="sign-tp5" type="462c0819:PsiDirectoryNode" />
               <item name="tp5" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="sign-tp5" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sign-tp5" type="462c0819:PsiDirectoryNode" />
-              <item name="tp5" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sign-tp5" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sign-tp5" type="462c0819:PsiDirectoryNode" />
-              <item name="tp5" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="userapi" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sign-tp5" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sign-tp5" type="462c0819:PsiDirectoryNode" />
-              <item name="tp5" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="userapi" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sign-tp5" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sign-tp5" type="462c0819:PsiDirectoryNode" />
-              <item name="tp5" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="userapi" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="v1" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -227,12 +186,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1565103160499</updated>
-      <workItem from="1565103161849" duration="7318000" />
+      <workItem from="1565103161849" duration="9668000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7318000" />
+    <option name="totallyTimeSpent" value="9668000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1364" height="735" extended-state="0" />
@@ -345,24 +304,31 @@
     <entry file="file://$PROJECT_DIR$/tp5/runtime/log/201908/07.log">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="182">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tp5/application/userapi/controller/v1/UserAutograph.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="27" column="23" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="23" />
+        <state relative-caret-position="235">
+          <caret line="29" column="84" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="84" />
           <folding>
             <element signature="e#125#165#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tp5/config/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26">
+          <caret line="1" column="11" lean-forward="true" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tp5/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="208">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>

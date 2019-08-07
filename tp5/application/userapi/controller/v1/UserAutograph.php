@@ -25,7 +25,13 @@ class UserAutograph extends UserApi
     {
         $content = $request->param('content');
 
-        Log::record(222,'demo');
+        if (empty($content)) {
+            $this->success();
+        }
+
+        $content = json_encode($content);
+
+        Log::record($content,'demo');
         //  验证是否格式正确
 //        $content = '特3456书yuuo莞6543李zxcz蒜7782法fgnv级完2347全dfji试3726测asad感3847知qwez到';
 
