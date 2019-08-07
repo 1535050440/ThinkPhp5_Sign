@@ -43,11 +43,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tp5/application/userapi/controller/v1/UserAutograph.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="235">
-              <caret line="29" column="84" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="84" />
+            <state relative-caret-position="105">
+              <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
               <folding>
                 <element signature="e#125#165#0#PHP" expanded="true" />
               </folding>
@@ -55,7 +55,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tp5/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="208">
@@ -119,13 +119,13 @@
         <option value="$PROJECT_DIR$/tp5/application/userapi/controller/v1/Login.php" />
         <option value="$PROJECT_DIR$/tp5/application/common/service/UserToken.php" />
         <option value="$PROJECT_DIR$/tp5/config/log.php" />
-        <option value="$PROJECT_DIR$/tp5/application/userapi/controller/v1/UserAutograph.php" />
         <option value="$PROJECT_DIR$/tp5/application/userapi/controller/v1/User.php" />
         <option value="$PROJECT_DIR$/tp5/.gitignore" />
+        <option value="$PROJECT_DIR$/tp5/application/userapi/controller/v1/UserAutograph.php" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="width" value="1364" />
     <option name="height" value="735" />
   </component>
@@ -145,6 +145,36 @@
               <item name="sign-tp5" type="b2602c69:ProjectViewProjectNode" />
               <item name="sign-tp5" type="462c0819:PsiDirectoryNode" />
               <item name="tp5" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sign-tp5" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sign-tp5" type="462c0819:PsiDirectoryNode" />
+              <item name="tp5" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sign-tp5" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sign-tp5" type="462c0819:PsiDirectoryNode" />
+              <item name="tp5" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="userapi" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sign-tp5" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sign-tp5" type="462c0819:PsiDirectoryNode" />
+              <item name="tp5" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="userapi" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sign-tp5" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sign-tp5" type="462c0819:PsiDirectoryNode" />
+              <item name="tp5" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="userapi" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="v1" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -186,12 +216,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1565103160499</updated>
-      <workItem from="1565103161849" duration="9668000" />
+      <workItem from="1565103161849" duration="9940000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9668000" />
+    <option name="totallyTimeSpent" value="9940000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1364" height="735" extended-state="0" />
@@ -202,8 +232,8 @@
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" visible="true" weight="0.049916804" />
+      <window_info anchor="bottom" id="Version Control" visible="true" weight="0.14475873" />
+      <window_info anchor="bottom" id="Terminal" weight="0.40266222" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -220,6 +250,32 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/tp5/config/wx.php">
@@ -308,16 +364,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tp5/application/userapi/controller/v1/UserAutograph.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="29" column="84" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="84" />
-          <folding>
-            <element signature="e#125#165#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tp5/config/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="26">
@@ -329,6 +375,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
           <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp5/application/userapi/controller/v1/UserAutograph.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
+          <folding>
+            <element signature="e#125#165#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
