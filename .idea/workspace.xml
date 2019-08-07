@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="72ddb712-c1e9-4375-a7aa-caece395cc9d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/tp5/application/common/service/UserToken.php" beforeDir="false" afterPath="$PROJECT_DIR$/tp5/application/common/service/UserToken.php" afterDir="false" />
-    </list>
+    <list default="true" id="72ddb712-c1e9-4375-a7aa-caece395cc9d" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -204,12 +202,12 @@
       <option name="presentableId" value="Default" />
       <updated>1565103160499</updated>
       <workItem from="1565103161849" duration="9940000" />
-      <workItem from="1565180436741" duration="1721000" />
+      <workItem from="1565180436741" duration="2321000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12093000" />
+    <option name="totallyTimeSpent" value="12693000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1364" height="735" extended-state="0" />

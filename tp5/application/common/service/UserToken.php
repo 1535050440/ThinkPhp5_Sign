@@ -64,6 +64,7 @@ class UserToken
                 'open_id' => $open_id,
                 'add_time' => time()
             ];
+            
             $userFind = UserModel::create($data);
         }
         //
