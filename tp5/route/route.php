@@ -22,6 +22,7 @@ Route::get('userapi/v1/user/show','userapi/v1.User/show');
 Route::get('userapi/v1/user_autograph/copy','userapi/v1.UserAutograph/copy');
 Route::get('userapi/v1/user/info_update','userapi/v1.User/updateInfo');
 Route::get('userapi/v1/user/info','userapi/v1.User/info');
+Route::get('userapi/v1/user/list','userapi/v1.User/getUserList');
 
 //  ============================================================
 Route::any('demo','userapi/v1.File/addFile');
