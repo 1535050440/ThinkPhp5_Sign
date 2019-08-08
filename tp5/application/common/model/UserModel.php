@@ -29,7 +29,22 @@ class UserModel extends BaseModel
      */
     public function getNickNameAttr($value)
     {
-        return htmlentities(base64_decode($value));
+        if ($value) {
+            return htmlentities(base64_decode($value))?:'';
+        } else {
+            return '未填';
+        }
+    }
+
+    /**
+     * 头像
+     * @param $value
+     * @return string
+     * @deng      2019/8/8    23:48
+     */
+    public function getAvatarAttr($value)
+    {
+        return $value?:'https://www.guangjiaoge.com/images/user/admin.png';
     }
 
     /**
@@ -294,7 +309,6 @@ class UserModel extends BaseModel
 
             $v->sign = $sign?htmlentities(base64_decode($sign)):'';
             $v->avatar = $v->avatar?:'https://www.guangjiaoge.com/images/user/admin.png';
-            $v->nick_name = $v->nick_name?:'未填';
         }
 
         return $getUserList;
