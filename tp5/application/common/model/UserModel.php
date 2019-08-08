@@ -9,6 +9,7 @@
 namespace app\common\model;
 
 use app\common\exception\ParamException;
+use app\userapi\controller\v1\UserAutograph;
 use think\Db;
 
 /**
@@ -270,6 +271,32 @@ class UserModel extends BaseModel
         }
 
         return $orderModelFind;
+    }
+
+    /**
+     * @param $list_rows
+     * @param $page
+     * @return \think\Paginator
+     * @throws \think\exception\DbException
+     * @deng      2019/8/8    22:49
+     */
+    public static function getUserList($list_rows, $page)
+    {
+        $getUserList = self::alias('a')
+            ->field('a.*')
+            ->order('a.id desc')
+            ->paginate($list_rows,false,['page'=>$page]);
+
+        foreach ($getUserList as $v) {
+            $sign = UserAutographModel::where('user_id','=',$v->id)
+                ->order('id desc')
+                ->value('content');
+
+            $v->sign = $sign?htmlentities(base64_decode($sign)):'';
+        }
+
+        return $getUserList;
+
     }
 
 }

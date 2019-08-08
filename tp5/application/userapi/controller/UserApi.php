@@ -55,7 +55,7 @@ class UserApi
 
                 $user_id = $result->user_id;
             } else {
-                $user_id = 6;
+                $user_id = 8;
             }
 
 

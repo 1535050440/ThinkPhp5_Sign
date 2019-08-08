@@ -68,15 +68,8 @@ class User extends UserApi
         $list_rows = $request->param('list_rows')?:100;
         $page = $request->param('page')?:1;
 
-        $result = UserModel::field('*')
-            ->order('id desc')
-            ->paginate($list_rows,false,['page'=>$page]);
+        $result = UserModel::getUserList($list_rows, $page);
 
-        foreach ($result as $v){
-            if ($v->add_time) {
-                $v->add_time = date('Y-m-d H:i',$v->add_time);
-            }
-        }
         $this->success($result);
 
     }

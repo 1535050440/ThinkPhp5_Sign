@@ -15,6 +15,10 @@ use app\userapi\controller\UserApi;
 use think\facade\Log;
 use think\Request;
 
+/**
+ * @method static field($string)
+ * @method static where($string, $string1, $id)
+ */
 class UserAutograph extends UserApi
 {
     /**
@@ -31,7 +35,7 @@ class UserAutograph extends UserApi
 
         Log::record($content,'demo');
 
-        $contentJson = json_encode($content);
+        $contentJson = base64_encode($content);
 
         //  保存到数据库
         $data = [
