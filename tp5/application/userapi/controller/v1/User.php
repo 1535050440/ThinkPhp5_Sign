@@ -39,9 +39,22 @@ class User extends UserApi
         $userFind->sex = $sex;
         $userFind->avatar = $avatar;
 
+        if (!$userFind->add_time) {
+            $userFind->add_time = time();
+        }
+
         $userFind->save();
 
         $this->success($userFind);
+    }
+
+    /**
+     * @param Request $request
+     * @deng      2019/8/8    8:35
+     */
+    public function info(Request $request)
+    {
+        $this->success($request->user);
     }
 
 }
