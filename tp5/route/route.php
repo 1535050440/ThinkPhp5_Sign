@@ -20,6 +20,7 @@ Route::get('userapi/v1/login','userapi/v1.Login/login');
 Route::get('userapi/v1/user/show','userapi/v1.User/show');
 
 Route::get('userapi/v1/user_autograph/copy','userapi/v1.UserAutograph/copy');
+Route::get('userapi/v1/user/info_update','userapi/v1.User/updateInfo');
 
 //  ============================================================
 
