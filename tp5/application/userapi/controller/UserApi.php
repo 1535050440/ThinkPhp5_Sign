@@ -47,14 +47,14 @@ class UserApi
             $token = request()->header('token');
 
             $user = cache($token);
-//            if (!$user) {
-//                $this->success([], 'token不存在，请重新获取!', 401);
-//            }
-//
-//            $result = json_decode($user);
-//
-//            $user_id = $result->user_id;
-            $user_id = 6;
+            if (!$user) {
+                $this->success([], 'token不存在，请重新获取!', 401);
+            }
+
+            $result = json_decode($user);
+
+            $user_id = $result->user_id;
+
             $user = UserModel::find($user_id);
             request()->user = $user;
         }
