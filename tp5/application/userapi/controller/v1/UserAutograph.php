@@ -23,10 +23,15 @@ class UserAutograph extends UserApi
 {
     /**
      * @param Request $request
+     * @throws ParamException
      * @deng      2019/8/7    0:20
      */
     public function copy(Request $request)
     {
+        $avatar = $request->user->avatar;
+        if (empty($avatar)) {
+            throw new ParamException('请先授权微信头像');
+        }
         $content = $request->param('content');
 
         if (empty($content)) {

@@ -44,7 +44,8 @@ class UserModel extends BaseModel
      */
     public function getAvatarAttr($value)
     {
-        return $value?:'https://www.guangjiaoge.com/images/user/admin.png';
+//        return $value?:'https://www.guangjiaoge.com/images/user/admin.png';
+        return $value;
     }
 
     /**
@@ -308,7 +309,6 @@ class UserModel extends BaseModel
                 ->value('content');
 
             $v->sign = $sign?htmlentities(base64_decode($sign)):'';
-            $v->avatar = $v->avatar?:'https://www.guangjiaoge.com/images/user/admin.png';
         }
 
         return $getUserList;
