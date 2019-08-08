@@ -293,6 +293,8 @@ class UserModel extends BaseModel
                 ->value('content');
 
             $v->sign = $sign?htmlentities(base64_decode($sign)):'';
+            $v->avatar = $v->avatar?:'https://www.guangjiaoge.com/images/user/admin.png';
+            $v->nick_name = $v->nick_name?:'未填';
         }
 
         return $getUserList;
