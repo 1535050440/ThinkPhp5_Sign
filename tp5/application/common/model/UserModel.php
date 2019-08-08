@@ -32,6 +32,23 @@ class UserModel extends BaseModel
     }
 
     /**
+     * 时间转换为年月日格式
+     * @param $value
+     * @return false|string
+     * @deng      2019/8/8    22:01
+     */
+    public function getAddTimeAttr($value)
+    {
+        if ($value) {
+            $addTime = date('Y-m-d H:i',$value);
+        } else {
+            $addTime = '';
+        }
+
+        return $addTime;
+    }
+
+    /**
      * 检查当前openid是否存在，不存在新增用户
      * @param $open_id
      * @return UserModel|array|\PDOStatement|string|\think\Model|null

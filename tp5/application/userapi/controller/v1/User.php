@@ -74,7 +74,7 @@ class User extends UserApi
 
         foreach ($result as $v){
             if ($v->add_time) {
-                $v->add_time = date('Y-m-d H:i');
+                $v->add_time = date('Y-m-d H:i',$v->add_time);
             }
         }
         $this->success($result);
