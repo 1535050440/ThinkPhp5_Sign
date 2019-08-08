@@ -21,6 +21,17 @@ class UserModel extends BaseModel
     protected $name = 'user';
 
     /**
+     * 获取nick_name
+     * @param $value
+     * @return string
+     * @author:  deng    (2019/8/8 9:37)
+     */
+    public function getNickNameAttr($value)
+    {
+        return htmlentities(base64_decode($value));
+    }
+
+    /**
      * 检查当前openid是否存在，不存在新增用户
      * @param $open_id
      * @return UserModel|array|\PDOStatement|string|\think\Model|null

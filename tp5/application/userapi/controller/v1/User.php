@@ -23,6 +23,7 @@ class User extends UserApi
     }
 
     /**
+     * 更新用户的微信头像，昵称
      * @param Request $request
      * @deng      2019/8/8    8:12
      */
@@ -41,6 +42,9 @@ class User extends UserApi
 
         if (!$userFind->add_time) {
             $userFind->add_time = time();
+        }
+        if (!$userFind->real_name) {
+            $userFind->real_name = htmlentities($nick_name);
         }
 
         $userFind->save();
