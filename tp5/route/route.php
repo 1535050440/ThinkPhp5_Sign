@@ -24,10 +24,10 @@ Route::get('userapi/v1/user/info_update','userapi/v1.User/updateInfo');
 Route::get('userapi/v1/user/info','userapi/v1.User/info');
 
 //  ============================================================
-
+Route::any('demo','userapi/v1.File/addFile');
 
 Route::get('think', function () {
-    return 'hello,ThinkPHP5!';
+    return 'hethinkllo,ThinkPHP5!';
 });
 
 Route::get('hello/:name', 'index/hello');
