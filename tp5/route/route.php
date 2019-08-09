@@ -24,6 +24,9 @@ Route::get('userapi/v1/user/info_update','userapi/v1.User/updateInfo');
 Route::get('userapi/v1/user/info','userapi/v1.User/info');
 Route::get('userapi/v1/user/list','userapi/v1.User/getUserList');
 
+//  版本更新日志
+Route::get('userapi/v1/version/list','userapi/v1.VersionLog/index');
+
 //  ============================================================
 Route::any('demo','userapi/v1.File/addFile');
 
