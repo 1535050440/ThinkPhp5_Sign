@@ -66,4 +66,10 @@ class UserAutograph extends UserApi
         $this->success($content);
     }
 
+    public function index()
+    {
+        UserAutographModel::getUserAutographList($);
+    }
+
+
 }
