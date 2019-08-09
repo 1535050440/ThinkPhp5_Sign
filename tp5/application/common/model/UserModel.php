@@ -301,6 +301,7 @@ class UserModel extends BaseModel
         $getUserList = self::alias('a')
             ->field('a.*')
             ->order('a.id desc')
+            ->where('avatar','not null')
             ->paginate($list_rows,false,['page'=>$page]);
 
         foreach ($getUserList as $v) {

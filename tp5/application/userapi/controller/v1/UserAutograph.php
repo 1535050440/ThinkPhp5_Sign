@@ -66,9 +66,24 @@ class UserAutograph extends UserApi
         $this->success($content);
     }
 
-    public function index()
+    /**
+     * @param Request $request
+     * @throws \think\exception\DbException
+     * @deng      2019/8/9    23:48
+     */
+    public function index(Request $request)
     {
-        UserAutographModel::getUserAutographList($);
+        $list_rows = $request->param('list_rows')?:30;
+        $page = $request->param('page')?:1;
+        $user_id = $request->param('user_id');
+
+        $params = [
+            'user_id' => $user_id
+        ];
+
+        $result = UserAutographModel::getUserAutographList($list_rows,$page,$params);
+
+        $this->success($result);
     }
 
 
