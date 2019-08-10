@@ -10,7 +10,14 @@ namespace app\common\model;
 
 use app\common\exception\ParamException;
 use app\userapi\controller\v1\UserAutograph;
+use Exception;
+use PDOStatement;
 use think\Db;
+use think\db\exception\DataNotFoundException;
+use think\db\exception\ModelNotFoundException;
+use think\exception\DbException;
+use think\Model;
+use think\Paginator;
 
 /**
  * Class UserModel
@@ -68,10 +75,10 @@ class UserModel extends BaseModel
     /**
      * 检查当前openid是否存在，不存在新增用户
      * @param $open_id
-     * @return UserModel|array|\PDOStatement|string|\think\Model|null
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
-     * @throws \think\exception\DbException
+     * @return UserModel|array|PDOStatement|string|Model|null
+     * @throws DataNotFoundException
+     * @throws ModelNotFoundException
+     * @throws DbException
      */
     public static function addUserOpenID($open_id)
     {
@@ -116,9 +123,9 @@ class UserModel extends BaseModel
      * 用户签到
      * @return UserSignModel
      * @throws ParamException
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
-     * @throws \think\exception\DbException
+     * @throws DataNotFoundException
+     * @throws ModelNotFoundException
+     * @throws DbException
      */
     public function addSign()
     {
@@ -173,8 +180,8 @@ class UserModel extends BaseModel
      * @deng      2019/8/4    20:10
      * @param $list_rows
      * @param $page
-     * @return \think\Paginator
-     * @throws \think\exception\DbException
+     * @return Paginator
+     * @throws DbException
      */
     public function getUserAddressList($list_rows = 10, $page = 1)
     {
@@ -185,10 +192,10 @@ class UserModel extends BaseModel
 
     /**
      * 获取用户的一条收货地址
-     * @return array|\PDOStatement|string|\think\Model|null
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
-     * @throws \think\exception\DbException
+     * @return array|PDOStatement|string|Model|null
+     * @throws DataNotFoundException
+     * @throws ModelNotFoundException
+     * @throws DbException
      * @deng      2019/8/4    20:37
      */
     public function getUserAddressFind()
@@ -281,7 +288,7 @@ class UserModel extends BaseModel
             OrderAddressModel::create($orderAddress);
 
             Db::commit();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             Db::rollback();
             throw new ParamException($e->getMessage());
         }
@@ -292,8 +299,8 @@ class UserModel extends BaseModel
     /**
      * @param $list_rows
      * @param $page
-     * @return \think\Paginator
-     * @throws \think\exception\DbException
+     * @return Paginator
+     * @throws DbException
      * @deng      2019/8/8    22:49
      */
     public static function getUserList($list_rows, $page)
@@ -314,6 +321,33 @@ class UserModel extends BaseModel
 
         return $getUserList;
 
+    }
+
+    /**
+     * @param $content
+     * @return UserAutographModel|array|PDOStatement|string|Model|null
+     * @throws DataNotFoundException
+     * @throws ModelNotFoundException
+     * @throws DbException
+     * @author deng    (2019/8/10 11:19)
+     */
+    public function addUserAutograph($content)
+    {
+        $addUserAutograph = UserAutographModel::where('user_id','=',$this->id)
+            ->where('content','=',$content)
+            ->find();
+
+        if (empty($addUserAutograph)) {
+            $data = [
+                'user_id' => $this->id,
+                'add_time' => time(),
+                'content' => $content,
+                'create_time' => date('Y-m-d H:i:s'),
+            ];
+            $addUserAutograph = UserAutographModel::create($data);
+        }
+
+        return $addUserAutograph;
     }
 
 }
