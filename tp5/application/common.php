@@ -28,3 +28,19 @@ function curlText($content,$ACCESS_TOKEN){
 
     return $output;//返回结果
 }
+
+function downloadFile($url, $path = 'images/')
+{
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
+    $file = curl_exec($ch);
+    curl_close($ch);
+    $filename = pathinfo($url, PATHINFO_BASENAME);
+//    echo $path . $filename. 'a';exit;
+//    print_r($filename);exit;
+    $resource = fopen($path . $filename, 'a');
+    fwrite($resource, $file);
+    fclose($resource);
+}
