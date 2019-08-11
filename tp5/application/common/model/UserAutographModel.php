@@ -35,7 +35,6 @@ class UserAutographModel extends BaseModel
             return '';
         }
 
-
     }
 
     /**
@@ -67,5 +66,17 @@ class UserAutographModel extends BaseModel
 
 
         return $result;
+    }
+
+    public function addUserAutographFind($user_id)
+    {
+        $data = [
+            'user_id' => $request->user->id,
+            'add_time' => time(),
+            'content' => $contentJson,
+            'create_time' => date('Y-m-d H:i:s'),
+        ];
+
+        self::where('user_id','=',$user_id);
     }
 }
