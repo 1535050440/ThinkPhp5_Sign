@@ -19,7 +19,7 @@ Route::get('userapi/v1/login','userapi/v1.Login/login');
 //  查询个人信息接口
 Route::get('userapi/v1/user/show','userapi/v1.User/show');
 
-Route::get('userapi/v1/user/info_update','userapi/v1.User/updateInfo');
+Route::any('userapi/v1/user/info_update','userapi/v1.User/updateInfo');
 Route::get('userapi/v1/user/info','userapi/v1.User/info');
 Route::get('userapi/v1/user/list','userapi/v1.User/getUserList');
 
