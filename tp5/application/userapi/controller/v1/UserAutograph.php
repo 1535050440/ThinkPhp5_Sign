@@ -10,6 +10,7 @@ namespace app\userapi\controller\v1;
 
 
 use app\common\exception\ParamException;
+use app\common\model\AutographModel;
 use app\common\model\UserAutographModel;
 use app\common\model\UserModel;
 use app\userapi\controller\UserApi;
@@ -25,6 +26,10 @@ use think\Request;
  */
 class UserAutograph extends UserApi
 {
+    protected $no_need_token = [
+        'getAutograph'
+    ];
+
     /**
      * @param Request $request
      * @throws DbException
@@ -85,5 +90,21 @@ class UserAutograph extends UserApi
         $this->success($result);
     }
 
+    /**
+     * @param Request $request
+     * @throws DbException
+     */
+    public function getAutograph(Request $request)
+    {
+        $list_rows = $request->param('list_rows')?:30;
+        $page = $request->param('page')?:1;
+
+        $result = AutographModel::field('*')
+            ->order('order_id asc')
+            ->paginate($list_rows,false,['page'=>$page]);
+
+        $this->success($result);
+
+    }
 
 }

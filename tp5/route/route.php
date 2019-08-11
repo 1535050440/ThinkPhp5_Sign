@@ -26,6 +26,7 @@ Route::get('userapi/v1/user/list','userapi/v1.User/getUserList');
 //  签名居中
 Route::get('userapi/v1/user_autograph/copy','userapi/v1.UserAutograph/copy');
 Route::get('userapi/v1/user_autograph/index','userapi/v1.UserAutograph/index');
+Route::get('userapi/v1/user_autograph/list','userapi/v1.UserAutograph/getAutograph');
 
 
 //  版本更新日志
