@@ -19,6 +19,11 @@ class Test extends UserApi
      */
     public function test(Request $request)
     {
+        $test = '啊';
+        $b = strlen($test);
+
+
+        echo 'test';exit;
         //  指定目录   E:\phpStudy\PHPTutorial\WWW\qq1515551519-sign-tp5\tp5\public\uploads
         $ROOT_PATH = Env::get('root_path');
         $address = $ROOT_PATH . 'public' . DIRECTORY_SEPARATOR . 'uploads'.date('Ymd');

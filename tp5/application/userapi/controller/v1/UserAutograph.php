@@ -101,6 +101,7 @@ class UserAutograph extends UserApi
 
         $result = AutographModel::field('*')
             ->order('order_id asc')
+            ->where('is_show','=',1)
             ->paginate($list_rows,false,['page'=>$page]);
 
         $this->success($result);
