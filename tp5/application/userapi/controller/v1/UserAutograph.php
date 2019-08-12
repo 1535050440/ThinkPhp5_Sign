@@ -53,6 +53,7 @@ class UserAutograph extends UserApi
         Log::record($content,'demo');
 
         $contentJson = base64_encode($content);
+        Log::record($contentJson,'demo');
 
         $userFind = UserModel::get($request->user->id);
         $userFind->addUserAutograph($contentJson);
@@ -92,6 +93,17 @@ class UserAutograph extends UserApi
             $data = base64_decode($demo_left).$content.base64_decode($nulll).base64_decode($demo_right);
             $content_now = base64_encode($data);
             //  11个字符  +自己的字
+        } else if ($text_len >30 && $text_len <=50) {
+            //  循环几次
+            $nulll = '';
+
+            //  换行  1rTWtAr
+            $demo_left = '1rTWtAr';
+            $demo_right = 'ICAg4oCD4oCD4oCD4oCD4oCD1rTWtAoKCta0';
+
+            //  2.
+            $data = base64_decode($demo_left).$content.base64_decode($demo_right);
+            $content_now = base64_encode($data);
         } else {
             $data = $content;
             $content_now = base64_encode($data);
