@@ -92,6 +92,9 @@ class UserAutograph extends UserApi
             $data = base64_decode($demo_left).$content.base64_decode($nulll).base64_decode($demo_right);
             $content_now = base64_encode($data);
             //  11个字符  +自己的字
+        } else {
+            $data = $content;
+            $content_now = base64_encode($data);
         }
 
         //  -----------------------------------------------
@@ -130,6 +133,8 @@ class UserAutograph extends UserApi
      */
     public function getAutograph(Request $request)
     {
+        $a = '啊啊啊啊啊啊啊啊啊啊';
+        echo strlen($a);exit;
         $list_rows = $request->param('list_rows')?:30;
         $page = $request->param('page')?:1;
 
