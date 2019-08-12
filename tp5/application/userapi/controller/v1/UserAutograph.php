@@ -133,8 +133,6 @@ class UserAutograph extends UserApi
      */
     public function getAutograph(Request $request)
     {
-        $a = '啊啊啊啊啊啊啊啊啊啊';
-        echo strlen($a);exit;
         $list_rows = $request->param('list_rows')?:30;
         $page = $request->param('page')?:1;
 
