@@ -67,7 +67,40 @@ class UserAutograph extends UserApi
 //            throw new ParamException('内容包含敏感信息，请从新输入！');
 //        }
 
-        $this->success($content);
+
+        //  -----------------------------------------------
+        $text_len = strlen($content);
+//        echo strlen($text_len);exit;
+        //  一个中文，3个字符
+        //  11个中午，那么可输入33个字符
+        //  如果不够33个字符，凑白
+        if ($text_len <= 30) {
+            $cha = 30 - $text_len;
+            $sahng = intval($cha/3);
+            //  循环几次
+            $i=0;
+            $nulll = '';
+            for ($i;$i <= $sahng;$i++) {
+                $nulll = $nulll.'ICAg';
+            }
+
+            //  换行  1rTWtAr
+            $demo_left = '1rTWtAr';
+            $demo_right = 'ICAg4oCD4oCD4oCD4oCD4oCD1rTWtAoKCta0';
+
+            //  2.
+            $data = base64_decode($demo_left).$content.base64_decode($nulll).base64_decode($demo_right);
+            $content_now = base64_encode($data);
+            //  11个字符  +自己的字
+        }
+
+        //  -----------------------------------------------
+
+        $result = [
+            'text' => $data,
+            'text_base' => $content_now
+        ];
+        $this->success($result);
     }
 
     /**
@@ -91,6 +124,7 @@ class UserAutograph extends UserApi
     }
 
     /**
+     * base64_decode        解密
      * @param Request $request
      * @throws DbException
      */
