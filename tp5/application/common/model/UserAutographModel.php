@@ -9,6 +9,9 @@
 namespace app\common\model;
 
 
+use think\exception\DbException;
+use think\Paginator;
+
 class UserAutographModel extends BaseModel
 {
     protected $name = 'user_autograph';
@@ -38,9 +41,8 @@ class UserAutographModel extends BaseModel
      * @param $list_rows
      * @param $page
      * @param array $params
-     * @return \think\Paginator
-     * @throws \think\exception\DbException
-     * @deng      2019/8/9    23:04
+     * @return Paginator
+     * @throws DbException
      */
     public static function getUserAutographList($list_rows,$page, $params = [])
     {

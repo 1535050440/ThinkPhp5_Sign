@@ -9,6 +9,7 @@
 namespace app\userapi\controller\v1;
 
 
+use app\common\exception\ParamException;
 use app\common\model\UserModel;
 use app\userapi\controller\UserApi;
 use think\facade\Log;
@@ -25,20 +26,21 @@ class User extends UserApi
     /**
      * 更新用户的微信头像，昵称
      * @param Request $request
+     * @throws ParamException
      * @deng      2019/8/8    8:12
      */
     public function updateInfo(Request $request)
     {
         $nick_name = $request->param('nick_name');
-        $sex = $request->param('sex')==1?1:2;
+        $sex = $request->param('sex');
         $avatar = $request->param('avatar');
 
         $user_id = $request->user->id;
 
         $userFind = UserModel::get($user_id);
-        $userFind->nick_name = base64_encode($nick_name);
-        $userFind->sex = $sex;
-        $userFind->avatar = $avatar;
+        if ($nick_name) $userFind->nick_name = base64_encode($nick_name);
+        if ($sex)   $userFind->sex = $sex==1?1:2;
+        if ($avatar)    $userFind->avatar = $avatar;
 
         if (!$userFind->add_time) {
             $userFind->add_time = time();
