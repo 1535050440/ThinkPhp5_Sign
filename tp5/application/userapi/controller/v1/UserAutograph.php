@@ -39,6 +39,104 @@ class UserAutograph extends UserApi
      * @throws ModelNotFoundException
      * @deng      2019/8/7    0:20
      */
+//    public function copy_xx(Request $request)
+//    {
+//        $avatar = $request->user->avatar;
+//        if (empty($avatar)) {
+//            throw new ParamException('请先授权微信头像');
+//        }
+//        $content = $request->param('content');
+//
+//        if (empty($content)) {
+//            $this->success();
+//        }
+//
+//        Log::record('输入的内容为：'.$content,'demo');
+//
+//        $contentJson = base64_encode($content);
+//        Log::record($contentJson,'demo');
+//
+//        $userFind = UserModel::get($request->user->id);
+//        $userFind->addUserAutograph($contentJson);
+//
+//        //  保存到数据库
+//        //  验证是否格式正确
+////        $content = '特3456书yuuo莞6543李zxcz蒜7782法fgnv级完2347全dfji试3726测asad感3847知qwez到';
+////        $access_token = $request->user->access_token;
+////        $result = curlText($content,$access_token);
+////        if ($result->errcode == '87014') {
+////            throw new ParamException('内容包含敏感信息，请从新输入！');
+////        }
+//
+//
+//        //  -----------------------------------------------
+//        $text_len = strlen($content);
+////        echo strlen($text_len);exit;
+//        //  一个中文，3个字符
+//        //  11个中午，那么可输入33个字符
+//        //  如果不够33个字符，凑白
+//        if ($text_len <= 30) {
+//            $cha = 30 - $text_len;
+//            $sahng = intval($cha/3);
+//            //  循环几次
+//            $i=0;
+//            $nulll = '';
+//            for ($i;$i <= $sahng;$i++) {
+//                $nulll = $nulll.'ICAg';
+//            }
+//
+//            //  换行  1rTWtAr
+//            $demo_left = '1rTWtAr';
+//            $demo_right = 'ICAg4oCD4oCD4oCD4oCD4oCD1rTWtAoKCta0';
+//
+//            //  2.
+//            $data = base64_decode($demo_left).$content.base64_decode($nulll).base64_decode($demo_right);
+//            $content_now = base64_encode($data);
+//            //  11个字符  +自己的字
+//        } else if ($text_len >30 && $text_len <=80) {
+//            //  循环几次
+//
+//            $textlen = strlen($content);
+//
+//
+//            $all = 30*3;
+//
+//            //  换行  1rTWtAr
+//            $demo_left = '1rTWtAr';
+//            $demo_right = 'ICAg4oCD4oCD4oCD4oCD4oCD1rTWtAoKCta0';
+//
+//            $demo_left_len = strlen(base64_decode($demo_left));
+//            $demo_right_len = strlen(base64_decode($demo_right));
+//
+//            $now = $demo_left_len + $demo_right_len;
+//
+//            $nownow = 90 - ($textlen + $now);
+//
+//            $count = intval($nownow/3)-5;
+//            //  循环几次
+////            echo '循环几次';
+////            echo $count;
+//            $i=0;
+//            $nulll = '';
+//            for ($i;$i < $count;$i++) {
+//                $nulll = $nulll.'ICAg';
+//            }
+//
+//            $data = base64_decode($demo_left).$content.base64_decode($nulll).base64_decode($demo_right);
+//            $content_now = base64_encode($data);
+//        } else {
+//            $data = $content;
+//            $content_now = base64_encode($data);
+//        }
+//
+//        //  -----------------------------------------------
+//
+//        $result = [
+//            'text' => $data,
+//            'text_base' => $content_now
+//        ];
+//        $this->success($result);
+//    }
     public function copy(Request $request)
     {
         $avatar = $request->user->avatar;
@@ -51,7 +149,7 @@ class UserAutograph extends UserApi
             $this->success();
         }
 
-        Log::record($content,'demo');
+        Log::record('输入的内容为：'.$content,'demo');
 
         $contentJson = base64_encode($content);
         Log::record($contentJson,'demo');
@@ -59,55 +157,20 @@ class UserAutograph extends UserApi
         $userFind = UserModel::get($request->user->id);
         $userFind->addUserAutograph($contentJson);
 
-        //  保存到数据库
-
-        //  验证是否格式正确
-//        $content = '特3456书yuuo莞6543李zxcz蒜7782法fgnv级完2347全dfji试3726测asad感3847知qwez到';
-//        $access_token = $request->user->access_token;
-//        $result = curlText($content,$access_token);
-//        if ($result->errcode == '87014') {
-//            throw new ParamException('内容包含敏感信息，请从新输入！');
-//        }
-
-
         //  -----------------------------------------------
+
+        //  1.计算当前输入的所占字符数量
         $text_len = strlen($content);
-//        echo strlen($text_len);exit;
-        //  一个中文，3个字符
-        //  11个中午，那么可输入33个字符
-        //  如果不够33个字符，凑白
-        if ($text_len <= 30) {
-            $cha = 30 - $text_len;
-            $sahng = intval($cha/3);
+
+        //  一个中文，3个字符,11个中午，那么可输入33个字符,如果不够33个字符，凑白
+        if ($text_len <=80) {
             //  循环几次
-            $i=0;
-            $nulll = '';
-            for ($i;$i <= $sahng;$i++) {
-                $nulll = $nulll.'ICAg';
-            }
-
-            //  换行  1rTWtAr
-            $demo_left = '1rTWtAr';
-            $demo_right = 'ICAg4oCD4oCD4oCD4oCD4oCD1rTWtAoKCta0';
-
-            //  2.
-            $data = base64_decode($demo_left).$content.base64_decode($nulll).base64_decode($demo_right);
-            $content_now = base64_encode($data);
-            //  11个字符  +自己的字
-        } else if ($text_len >30 && $text_len <=80) {
-            //  循环几次
-//            $text = '4p2k5qyi6L+O5p2l5Yiw5oiR55qE5pyL5Y+L5ZyI4p2k';
-
-//            $content = base64_decode($text);
 
             $textlen = strlen($content);
 
-
-            $all = 30*3;
-
             //  换行  1rTWtAr
             $demo_left = '1rTWtAr';
-            $demo_right = 'ICAg4oCD4oCD4oCD4oCD4oCD1rTWtAoKCta0';
+            $demo_right = '4oCD4oCD4oCD4oCD4oCD1rTWtAoKCta0';
 
             $demo_left_len = strlen(base64_decode($demo_left));
             $demo_right_len = strlen(base64_decode($demo_right));
@@ -116,18 +179,14 @@ class UserAutograph extends UserApi
 
             $nownow = 90 - ($textlen + $now);
 
-            $count = intval($nownow/3)-5;
+            $count = intval($nownow/3)-4;
             //  循环几次
-//            echo '循环几次';
-//            echo $count;
             $i=0;
             $nulll = '';
             for ($i;$i < $count;$i++) {
                 $nulll = $nulll.'ICAg';
             }
-//        echo $nulll;exit;
 
-            //  2.
             $data = base64_decode($demo_left).$content.base64_decode($nulll).base64_decode($demo_right);
             $content_now = base64_encode($data);
         } else {
