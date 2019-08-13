@@ -139,12 +139,6 @@ class UserAutograph extends UserApi
 //    }
     public function copy(Request $request)
     {
-        $aa = '1rTWtArinaTmrKLov47mnaXliLDmiJHnmoTmnIvlj4vlnIjinaQgICAgICAgICAgICDigIPigIPigIPigIPigIPWtNa0CgoK1rQ=';
-        echo $bb = strlen(base64_decode($aa));
-
-        exit;
-
-        //
         $avatar = $request->user->avatar;
         if (empty($avatar)) {
             throw new ParamException('请先授权微信头像');
