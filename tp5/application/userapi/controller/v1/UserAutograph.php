@@ -189,7 +189,7 @@ class UserAutograph extends UserApi
 
             $nownow = 90 - ($textlen + $now);
 
-            $count = intval($nownow/3)-6;
+            $count = intval($nownow/3)-5;
 //            $count = intval($nownow/3)-5;
             //  循环几次
             $nulll = '';
@@ -221,19 +221,42 @@ class UserAutograph extends UserApi
         $text = '';
 
         switch ($content) {
+            //
+            case '8J+SleavlOi1t+WWnOasouabtOWKoOWWnOasouWBj+eIsfCfkpU=':
+                //  💕比起喜欢更加喜欢偏爱💕 【0】
+                $text = '1rTWtArwn5KV5q+U6LW35Zac5qyi5pu05Yqg5Zac5qyi5YGP54ix8J+SlSAgIOKAg+KAg+KAgyAgICDigIMg4oCD1rTWtAoKCta0';
+                $status = true;
+                break;
             case '4p2k5q+U6LW35Zac5qyi5pu05Yqg5Zac5qyi5YGP54ix4p2k':
                 //  ❤比起喜欢更加喜欢偏爱❤【0】77
                 $text = '1rTWtArinaTmr5TotbfllpzmrKLmm7TliqDllpzmrKLlgY/niLHinaQgICAgICAgICAgICDigIPigIPigIPigIPigIPWtNa0CgoK1rQ=';
                 $status = true;
                 break;
             case '4p2k5qyi6L+O5p2l5Yiw5oiR55qE5pyL5Y+L5ZyI4p2k':
-                //  ❤欢迎来到我的朋友圈❤【1】74
+                //  ❤欢迎来到我的朋友圈❤ 【1】74
                 $text = '1rTWtArinaTmrKLov47mnaXliLDmiJHnmoTmnIvlj4vlnIjinaQgICAgICAgICAgICDigIPigIPigIPigIPigIPWtNa0CgoK1rQ=';
                 break;
             case '8J+UiVRB5pyA6L+R5LiJ5aSp55yL5LqG5L2g5pyL5Y+L5ZyIOeasoQ==':
-                //  TA最近三天看了你朋友圈9次【1】
+                //  TA最近三天看了你朋友圈9次  【1】
                 $text = '1rTWtArwn5SJVEHmnIDov5HkuInlpKnnnIvkuobkvaDmnIvlj4vlnIg55qyhICAgICAg4oCD4oCD4oCD4oCD4oCD1rTWtAoKCta0';
                 break;
+            case '5rC46L+c5rip5p+UIOawuOi/nOefpei/m+mAgPCfkafwn4+78J+Sqg==':
+                //  永远温柔 永远知进退👧🏻💪       【1】
+                $text = '1rTWtArmsLjov5zmuKnmn5Qg5rC46L+c55+l6L+b6YCA8J+Rp/Cfj7vwn5KqICAg4oCD4oCD4oCD4oCD4oCD1rTWtAoKCta0';
+                break;
+            case '5Lq655Sf5bu66K6u77yaS2VlcCBpdCByZWFs4p2k77iP':
+                //  人生建议：Keep it real❤️ [1]
+                $text = '1rTWtArkurrnlJ/lu7rorq7vvJpLZWVwIGl0IHJlYWzinaTvuI8gICAgICAgICDigIPigIPigIPigIPigIPWtNa0CgoK1rQ=';
+                break;
+            case '8J+To+ezu+e7n+iupOivgTrmnIvlj4vlnIjosIHmnIDnvo7inrY=':
+                //  📣系统认证:朋友圈谁最美➶️ [1]
+                $text = '1rTWtArwn5Oj57O71rTnu5/orqTor4E65pyL5Y+L5ZyI6LCB5pyA576O4p62ICAgICAg4oCD4oCD4oCD4oCD4oCD1rTWtAoKCta0';
+                break;
+            case '4pSA4pSA4pSA5Lul5LiL5YaF5a655LuF5a+55L2g5Y+v6KeB4pSA4pSA4pSA':
+                //  ───以下内容仅对你可见───️ [1]
+                $text = '1rTWtArilIDilIDilIDku6XkuIvlhoXlrrnku4Xlr7nkvaDlj6/op4HilIDilIDilIAgICAgIOKAg+KAg+KAg+KAg+KAg9a01rQKCgrWtA==';
+                break;
+                //
             default:
                 break;
         }
@@ -292,10 +315,11 @@ class UserAutograph extends UserApi
      */
     public function getList(Request $request)
     {
-        $list_rows = 100;
+        $list_rows = 5000;
         $page = 1;
 
         $getUserAutographModel = UserAutographModel::field('id,content')
+            ->group('content')
             ->paginate($list_rows,false,['page'=>$page]);
 
         $this->success($getUserAutographModel);
