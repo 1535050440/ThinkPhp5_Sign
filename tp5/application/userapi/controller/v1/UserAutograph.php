@@ -189,7 +189,7 @@ class UserAutograph extends UserApi
 
             $nownow = 90 - ($textlen + $now);
 
-            $count = intval($nownow/3)-5;
+            $count = intval($nownow/3)-6;
 //            $count = intval($nownow/3)-5;
             //  循环几次
             $nulll = '';
