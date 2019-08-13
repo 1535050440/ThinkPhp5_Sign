@@ -35,7 +35,7 @@ class Test extends UserApi
 
     public function test()
     {
-        $aa  = '——版本更新中，请稍等——';
+        $aa  = '【问题反馈+微信：qq1215551519】';
         echo base64_encode($aa);
         exit;
         //  ❤欢迎来到我的朋友圈❤

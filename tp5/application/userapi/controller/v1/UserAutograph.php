@@ -27,7 +27,8 @@ use think\Request;
 class UserAutograph extends UserApi
 {
     protected $no_need_token = [
-        'getAutograph'
+        'getAutograph',
+        'getList'
     ];
 
     /**
@@ -95,7 +96,6 @@ class UserAutograph extends UserApi
             //  11个字符  +自己的字
         } else if ($text_len >30 && $text_len <=80) {
             //  循环几次
-            //  ❤欢迎来到我的朋友圈❤
 //            $text = '4p2k5qyi6L+O5p2l5Yiw5oiR55qE5pyL5Y+L5ZyI4p2k';
 
 //            $content = base64_decode($text);
@@ -180,6 +180,23 @@ class UserAutograph extends UserApi
             ->paginate($list_rows,false,['page'=>$page]);
 
         $this->success($result);
+
+    }
+
+    /**
+     * @param Request $request
+     * @throws DbException
+     * @author deng    (2019/8/13 14:09)
+     */
+    public function getList(Request $request)
+    {
+        $list_rows = 100;
+        $page = 1;
+
+        $getUserAutographModel = UserAutographModel::field('id,content')
+            ->paginate($list_rows,false,['page'=>$page]);
+
+        $this->success($getUserAutographModel);
 
     }
 

@@ -9,6 +9,9 @@
 namespace app\common\model;
 
 
+use think\exception\DbException;
+use think\Paginator;
+
 class VersionLogModel extends BaseModel
 {
     protected $name = 'version_log';
@@ -36,13 +39,14 @@ class VersionLogModel extends BaseModel
     /**
      * @param $list_rows
      * @param $page
-     * @return \think\Paginator
-     * @throws \think\exception\DbException
+     * @return Paginator
+     * @throws DbException
      * @author:  deng    (2019/8/9 16:29)
      */
     public static function getVersionLogList($list_rows, $page)
     {
         return self::field('*')
+            ->order('id desc')
             ->paginate($list_rows,false,['page'=>$page]);
     }
 }
