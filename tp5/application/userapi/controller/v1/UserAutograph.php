@@ -93,16 +93,42 @@ class UserAutograph extends UserApi
             $data = base64_decode($demo_left).$content.base64_decode($nulll).base64_decode($demo_right);
             $content_now = base64_encode($data);
             //  11个字符  +自己的字
-        } else if ($text_len >30 && $text_len <=50) {
+        } else if ($text_len >30 && $text_len <=80) {
             //  循环几次
-            $nulll = '';
+            //  ❤欢迎来到我的朋友圈❤
+//            $text = '4p2k5qyi6L+O5p2l5Yiw5oiR55qE5pyL5Y+L5ZyI4p2k';
+
+//            $content = base64_decode($text);
+
+            $textlen = strlen($content);
+
+
+            $all = 30*3;
 
             //  换行  1rTWtAr
             $demo_left = '1rTWtAr';
             $demo_right = 'ICAg4oCD4oCD4oCD4oCD4oCD1rTWtAoKCta0';
 
+            $demo_left_len = strlen(base64_decode($demo_left));
+            $demo_right_len = strlen(base64_decode($demo_right));
+
+            $now = $demo_left_len + $demo_right_len;
+
+            $nownow = 90 - ($textlen + $now);
+
+            $count = intval($nownow/3)-5;
+            //  循环几次
+//            echo '循环几次';
+//            echo $count;
+            $i=0;
+            $nulll = '';
+            for ($i;$i < $count;$i++) {
+                $nulll = $nulll.'ICAg';
+            }
+//        echo $nulll;exit;
+
             //  2.
-            $data = base64_decode($demo_left).$content.base64_decode($demo_right);
+            $data = base64_decode($demo_left).$content.base64_decode($nulll).base64_decode($demo_right);
             $content_now = base64_encode($data);
         } else {
             $data = $content;

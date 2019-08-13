@@ -17,7 +17,7 @@ class Test extends UserApi
      * @param Request $request
      * @author deng    (2019/8/10 11:37)
      */
-    public function test(Request $request)
+    public function test1(Request $request)
     {
         $test = '啊';
         $b = strlen($test);
@@ -33,5 +33,53 @@ class Test extends UserApi
         downloadFile($img,$address);
     }
 
+    public function test()
+    {
+        //  ❤欢迎来到我的朋友圈❤
+        $text = '4p2k5qyi6L+O5p2l5Yiw5oiR55qE5pyL5Y+L5ZyI4p2k';
+
+        $content = base64_decode($text);
+
+//        print_r($aa);exit;
+
+        $textlen = strlen($content);
+
+
+        $all = 30*3;
+
+        //  换行  1rTWtAr
+        $demo_left = '1rTWtAr';
+        $demo_right = 'ICAg4oCD4oCD4oCD4oCD4oCD1rTWtAoKCta0';
+
+        $demo_left_len = strlen(base64_decode($demo_left));
+        $demo_right_len = strlen(base64_decode($demo_right));
+
+        $now = $demo_left_len + $demo_right_len;
+
+        echo $nownow = 90 - ($textlen + $now);
+
+        $count = intval($nownow/3)-5;
+        //  循环几次
+        echo '循环几次';
+        echo $count;
+//exit;
+        $i=0;
+        $nulll = '';
+        for ($i;$i < $count;$i++) {
+            $nulll = $nulll.'ICAg';
+        }
+//        echo $nulll;exit;
+
+        //  2.
+        $data = base64_decode($demo_left).$content.base64_decode($nulll).base64_decode($demo_right);
+        $content_now = base64_encode($data);
+
+        echo $data;
+        echo '======';
+        echo $content_now;
+        exit;
+
+
+    }
 
 }
