@@ -149,6 +149,16 @@ class UserAutograph extends UserApi
             $this->success();
         }
 
+        //  是否定义过
+        $statusText = $this->checkCopy($content);
+        if ($statusText['status']) {
+            $result = [
+                'text' => base64_decode($statusText['text']),
+                'text_base' => $statusText['text']
+            ];
+            $this->success($result);
+        }
+
         Log::record('输入的内容为：'.$content,'demo');
 
         $contentJson = base64_encode($content);
@@ -181,14 +191,15 @@ class UserAutograph extends UserApi
 
             $count = intval($nownow/3)-4;
             //  循环几次
-            $i=0;
             $nulll = '';
-            for ($i;$i < $count;$i++) {
+            for ($i = 0;$i < $count;$i++) {
                 $nulll = $nulll.'ICAg';
             }
 
             $data = base64_decode($demo_left).$content.base64_decode($nulll).base64_decode($demo_right);
             $content_now = base64_encode($data);
+
+            Log::record($content_now,'demo');
         } else {
             $data = $content;
             $content_now = base64_encode($data);
@@ -201,6 +212,32 @@ class UserAutograph extends UserApi
             'text_base' => $content_now
         ];
         $this->success($result);
+    }
+
+    public function checkCopy($content)
+    {
+        $status = false;
+        $text = '';
+
+        switch ($content) {
+            case '4p2k5q+U6LW35Zac5qyi5pu05Yqg5Zac5qyi5YGP54ix4p2k':
+                //  ❤比起喜欢更加喜欢偏爱❤
+                $text = '1rTWtArinaTmr5TotbfllpzmrKLmm7TliqDllpzmrKLlgY/niLHinaQgICAgICAgICAgICDigIPigIPigIPigIPigIPWtNa0CgoK1rQ=';
+                $status = true;
+                break;
+//            case '4p2k5q+U6LW35Zac5qyi5pu05Yqg5Zac5qyi5YGP54ix4p2ks':
+//                $data = '1rTWtArinaTmr5TotbfllpzmrKLmm7TliqDllpzmrKLlgY/niLsHinaQgICAgICAgICAgICDigIPigIPigIPigIPigIPWtNa0CgoK1rQ=';
+//                break;
+            default:
+                break;
+        }
+
+        $result = [
+            'text' => $text,
+            'status' => $status
+        ];
+
+        return $result;
     }
 
     /**
