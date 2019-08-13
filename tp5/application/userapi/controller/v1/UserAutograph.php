@@ -139,6 +139,12 @@ class UserAutograph extends UserApi
 //    }
     public function copy(Request $request)
     {
+        $aa = '1rTWtArinaTmrKLov47mnaXliLDmiJHnmoTmnIvlj4vlnIjinaQgICAgICAgICAgICDigIPigIPigIPigIPigIPWtNa0CgoK1rQ=';
+        echo $bb = strlen(base64_decode($aa));
+
+        exit;
+
+        //
         $avatar = $request->user->avatar;
         if (empty($avatar)) {
             throw new ParamException('请先授权微信头像');
@@ -189,7 +195,8 @@ class UserAutograph extends UserApi
 
             $nownow = 90 - ($textlen + $now);
 
-            $count = intval($nownow/3)-5;
+            $count = intval($nownow/3)-6;
+//            $count = intval($nownow/3)-5;
             //  循环几次
             $nulll = '';
             for ($i = 0;$i < $count;$i++) {
@@ -221,13 +228,18 @@ class UserAutograph extends UserApi
 
         switch ($content) {
             case '4p2k5q+U6LW35Zac5qyi5pu05Yqg5Zac5qyi5YGP54ix4p2k':
-                //  ❤比起喜欢更加喜欢偏爱❤
+                //  ❤比起喜欢更加喜欢偏爱❤【0】77
                 $text = '1rTWtArinaTmr5TotbfllpzmrKLmm7TliqDllpzmrKLlgY/niLHinaQgICAgICAgICAgICDigIPigIPigIPigIPigIPWtNa0CgoK1rQ=';
                 $status = true;
                 break;
-//            case '4p2k5q+U6LW35Zac5qyi5pu05Yqg5Zac5qyi5YGP54ix4p2ks':
-//                $data = '1rTWtArinaTmr5TotbfllpzmrKLmm7TliqDllpzmrKLlgY/niLsHinaQgICAgICAgICAgICDigIPigIPigIPigIPigIPWtNa0CgoK1rQ=';
-//                break;
+            case '4p2k5qyi6L+O5p2l5Yiw5oiR55qE5pyL5Y+L5ZyI4p2k':
+                //  ❤欢迎来到我的朋友圈❤【1】74
+                $text = '1rTWtArinaTmrKLov47mnaXliLDmiJHnmoTmnIvlj4vlnIjinaQgICAgICAgICAgICDigIPigIPigIPigIPigIPWtNa0CgoK1rQ=';
+                break;
+            case '8J+UiVRB5pyA6L+R5LiJ5aSp55yL5LqG5L2g5pyL5Y+L5ZyIOeasoQ==':
+                //  TA最近三天看了你朋友圈9次【1】
+                $text = '1rTWtArwn5SJVEHmnIDov5HkuInlpKnnnIvkuobkvaDmnIvlj4vlnIg55qyhICAgICAg4oCD4oCD4oCD4oCD4oCD1rTWtAoKCta0';
+                break;
             default:
                 break;
         }
