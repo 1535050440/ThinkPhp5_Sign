@@ -35,6 +35,9 @@ class Test extends UserApi
 
     public function test()
     {
+        $aa  = '——版本更新中，请稍等——';
+        echo base64_encode($aa);
+        exit;
         //  ❤欢迎来到我的朋友圈❤
         $text = '4p2k5qyi6L+O5p2l5Yiw5oiR55qE5pyL5Y+L5ZyI4p2k';
 
