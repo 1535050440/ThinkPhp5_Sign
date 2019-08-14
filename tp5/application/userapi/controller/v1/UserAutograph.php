@@ -153,6 +153,7 @@ class UserAutograph extends UserApi
         $statusText = $this->checkCopy($content);
         Log::record('-------','usersign');
         Log::record($statusText,'usersign');
+        Log::record($content,'usersign');
 
         if ($statusText['status']) {
             $result = [
