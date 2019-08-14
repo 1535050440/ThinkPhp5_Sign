@@ -9,7 +9,8 @@ use think\Request;
 class Test extends UserApi
 {
     protected $no_need_token = [
-        'test'
+        'test',
+        'info'
     ];
 
     /**
