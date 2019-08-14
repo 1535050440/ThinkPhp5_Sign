@@ -231,6 +231,7 @@ class UserAutograph extends UserApi
         Log::record($content,'sign');
 
         $content = base64_decode($content);
+        Log::record($content,'sign');
         $status = false;
         $text = '';
 
