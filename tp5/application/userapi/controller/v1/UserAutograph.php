@@ -151,16 +151,13 @@ class UserAutograph extends UserApi
 
         //  是否定义过
         $statusText = $this->checkCopy($content);
-        Log::record('-------','usersign');
-        Log::record($statusText,'usersign');
-        Log::record($content,'usersign');
 
         if ($statusText['status']) {
             $result = [
                 'text' => base64_decode($statusText['text']),
                 'text_base' => $statusText['text']
             ];
-            Log::record('-------','sign');
+            Log::record('----0---','sign');
             if ($request->user->id == 6 || $request->user->id == 8) {
                 Log::record('start记录--------','sign');
                 Log::record('当前输入的为：'.$content,'sign');
@@ -172,7 +169,6 @@ class UserAutograph extends UserApi
 
             $this->success($result);
         }
-        Log::record('==========','sign');
         Log::record('输入的内容为：'.$content,'demo');
 
         $contentJson = base64_encode($content);
@@ -286,6 +282,12 @@ class UserAutograph extends UserApi
             'text' => $text,
             'status' => $status
         ];
+        //  日志
+        Log::record('star--------------','sign');
+        Log::record($content,'sign');
+        Log::record($result,'sign');
+        Log::record('end--------------','sign');
+
 
         return $result;
     }
