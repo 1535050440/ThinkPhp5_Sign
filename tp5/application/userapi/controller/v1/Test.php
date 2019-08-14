@@ -84,4 +84,14 @@ class Test extends UserApi
 
     }
 
+    /**
+     * 输出版本信息
+     * @return bool
+     * @author deng    (2019/8/14 10:28)
+     */
+    public function info()
+    {
+        return phpinfo();
+    }
+
 }
