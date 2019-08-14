@@ -230,7 +230,7 @@ class UserAutograph extends UserApi
         Log::record('star--------------','sign');
         Log::record($content,'sign');
 
-        $content = base64_decode($content);
+        $content = base64_encode($content);
         Log::record($content,'sign');
         $status = false;
         $text = '';
