@@ -227,6 +227,9 @@ class UserAutograph extends UserApi
 
     public function checkCopy($content)
     {
+        Log::record('star--------------','sign');
+        Log::record($content,'sign');
+
         $content = base64_decode($content);
         $status = false;
         $text = '';
@@ -283,8 +286,7 @@ class UserAutograph extends UserApi
             'status' => $status
         ];
         //  日志
-        Log::record('star--------------','sign');
-        Log::record($content,'sign');
+
         Log::record($result,'sign');
         Log::record('end--------------','sign');
 
