@@ -151,7 +151,7 @@ class UserAutograph extends UserApi
 
         //  是否定义过
         $statusText = $this->checkCopy($content);
-
+        Log::record($statusText,'demo');
         if ($statusText['status']) {
             $result = [
                 'text' => base64_decode($statusText['text']),
