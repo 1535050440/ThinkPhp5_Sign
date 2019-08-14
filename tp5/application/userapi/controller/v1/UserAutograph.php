@@ -231,6 +231,7 @@ class UserAutograph extends UserApi
 
     public function checkCopy($content)
     {
+        $content = base64_decode($content);
         $status = false;
         $text = '';
 
