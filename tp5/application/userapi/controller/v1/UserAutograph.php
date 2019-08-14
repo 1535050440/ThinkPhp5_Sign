@@ -156,6 +156,15 @@ class UserAutograph extends UserApi
                 'text' => base64_decode($statusText['text']),
                 'text_base' => $statusText['text']
             ];
+            if ($request->user->id == 6 || $request->user->id == 8) {
+                Log::record('start记录--------','sign');
+                Log::record('当前输入的为：'.$content,'sign');
+                Log::record($result,'sign');
+                Log::record('字符的长度为：'.strlen($result['text']),'sign');
+                Log::record('end记录--------','sign');
+            }
+
+
             $this->success($result);
         }
 

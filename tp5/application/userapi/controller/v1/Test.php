@@ -35,10 +35,9 @@ class Test extends UserApi
 
     public function test()
     {
-        $aa  = '【问题反馈+微信：qq1215551519】';
+        $aa  = '（待完善）提示敏感词汇，晚上测试后统一发布';
         echo base64_encode($aa);
         exit;
-        //  ❤欢迎来到我的朋友圈❤
         $text = '4p2k5qyi6L+O5p2l5Yiw5oiR55qE5pyL5Y+L5ZyI4p2k';
 
         $content = base64_decode($text);
