@@ -2,7 +2,9 @@
 
 namespace app\userapi\controller\v1;
 
+use app\common\model\UserModel;
 use app\userapi\controller\UserApi;
+use think\facade\Cache;
 use think\facade\Env;
 use think\Request;
 
@@ -36,7 +38,7 @@ class Test extends UserApi
 
     public function test()
     {
-        $aa  = '（待完善）提示敏感词汇，晚上测试后统一发布';
+        $aa  = '【收藏小程序】';
         echo base64_encode($aa);
         exit;
         $text = '4p2k5qyi6L+O5p2l5Yiw5oiR55qE5pyL5Y+L5ZyI4p2k';
@@ -93,6 +95,16 @@ class Test extends UserApi
     public function info()
     {
         return phpinfo();
+    }
+
+
+    public function redis()
+    {
+        // 使用Redis缓存
+        Cache::store('redis')->set('name','value',3600);
+        Cache::store('redis')->get('name');
+
+
     }
 
 }
