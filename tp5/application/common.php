@@ -130,11 +130,14 @@ function downFileImg($url)
     fclose($fp2);
 
 
+    $img_path_data = $img_path.$img_name;
+    $img_path_data = str_replace("\\",'/',$img_path_data);
+
     $result = [
         'img_name' => $img_name,
         'img_type' => 'png',
         'status' => true,
-        'img_path' => $img_path.$img_name
+        'img_path' => $img_path_data
     ];
 
     return $result;

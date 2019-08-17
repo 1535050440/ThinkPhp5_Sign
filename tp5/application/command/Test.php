@@ -6,6 +6,11 @@ use app\common\model\UserModel;
 use think\console\Command;
 use think\console\Input;
 use think\console\Output;
+use think\db\exception\DataNotFoundException;
+use think\db\exception\ModelNotFoundException;
+use think\Exception;
+use think\exception\DbException;
+use think\exception\PDOException;
 
 class Test extends Command
 {
@@ -18,18 +23,32 @@ class Test extends Command
         
     }
 
+    /**
+     * @param Input $input
+     * @param Output $output
+     * @return int|void|null
+     * @throws Exception
+     * @throws DataNotFoundException
+     * @throws ModelNotFoundException
+     * @throws DbException
+     * @throws PDOException
+     */
     protected function execute(Input $input, Output $output)
     {
-        $userList = UserModel::field('id,avatar')->where('id','<',200)
+        $userList = UserModel::field('id,avatar')
+            ->where('id','<',9)
+//                ->where('id','<',300)
             ->where('avatar','not null')
             ->select()
             ->toArray();
-//        echo count($userList);exit;
+
         foreach ($userList as $user) {
             $avatar = $user['avatar'];
             $result = downFileImg($avatar);
 
-            echo $result['img_path'];
+            UserModel::where('id','=',$user['id'])
+                ->update(['avatar'=>$result['img_path']]);
+            echo '【'.$user['id'].'】==='.$result['img_path'];
             echo "\n";
         }
 
