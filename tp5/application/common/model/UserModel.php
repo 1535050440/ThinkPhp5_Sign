@@ -52,13 +52,16 @@ class UserModel extends BaseModel
     /**
      * 头像
      * @param $value
+     * https://dengshipeng.top/uploads/20190817/15660537792163.png
+     * return $value?:'https://www.guangjiaoge.com/images/user/admin.png';
      * @return string
      * @deng      2019/8/8    23:48
      */
     public function getAvatarAttr($value)
     {
-//        return $value?:'https://www.guangjiaoge.com/images/user/admin.png';
-        return $value;
+        $web_path = SettingModel::getSettingFind('web','web_path');
+
+        return $web_path.$value;
     }
 
     /**
