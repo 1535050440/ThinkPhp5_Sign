@@ -15,7 +15,8 @@ class Test extends UserApi
 {
     protected $no_need_token = [
         'test',
-        'info'
+        'info',
+        'downFile'
     ];
 
     /**
@@ -121,6 +122,11 @@ class Test extends UserApi
         Cache::store('redis')->get('name');
 
 
+    }
+
+    public function downFile()
+    {
+        echo 'downFiledownFile';
     }
 
 }

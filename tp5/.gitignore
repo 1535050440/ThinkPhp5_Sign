@@ -6,3 +6,4 @@ config
 thinkphp
 .env
 .DS_Store
+public/uploads

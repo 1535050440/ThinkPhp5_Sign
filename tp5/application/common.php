@@ -15,6 +15,7 @@
 use AlibabaCloud\Client\Exception\ClientException;
 use app\common\exception\ParamException;
 use DengTp5\AliSms;
+use think\facade\Env;
 
 function curlText($content, $ACCESS_TOKEN){
     $url = "https://api.weixin.qq.com/wxa/msg_sec_check?access_token=".$ACCESS_TOKEN;
@@ -90,4 +91,51 @@ function sendSms($mobile, $code)
     $sendSms = AliSms::sendSms($condition);
 
     return $sendSms;
+}
+
+
+/**
+ * @param string $url
+ * @return array
+ * @author deng    (2019/8/17 15:40)
+ */
+function downFileImg($url)
+{
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+    $info = curl_exec($curl);
+    curl_close($curl);
+
+    //  指定目录   E:\phpStudy\PHPTutorial\WWW\qq151551519-sign-tp5\tp5\public\uploads
+    $ROOT_PATH = Env::get('root_path');
+    $img_path = DIRECTORY_SEPARATOR . 'uploads'.DIRECTORY_SEPARATOR.date('Ymd').DIRECTORY_SEPARATOR;
+    $address = $ROOT_PATH . 'public' . $img_path;
+
+    //创建保存目录
+    if (!file_exists($address) && !mkdir($address, 0777, true)) {
+        $result = [
+            'status' => false
+        ];
+    }
+    $img_name = time().rand(1000,9999).'.png';
+
+    //  保存的本地地址及文件名
+    $newFileName = $address.$img_name;
+    $fp2 = @fopen($newFileName, "a");
+    fwrite($fp2, $info);
+    fclose($fp2);
+
+
+    $result = [
+        'img_name' => $img_name,
+        'img_type' => 'png',
+        'status' => true,
+        'img_path' => $img_path.$img_name
+    ];
+
+    return $result;
 }

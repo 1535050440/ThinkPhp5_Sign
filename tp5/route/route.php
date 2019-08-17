@@ -35,6 +35,7 @@ Route::get('userapi/v1/version/list','userapi/v1.VersionLog/index');
 //  ============================================================
 Route::any('redis','userapi/v1.Test/redis');
 Route::any('test','userapi/v1.Test/test');
+Route::any('file','userapi/v1.File/downFile');
 Route::any('phpinfo','userapi/v1.Test/info');
 Route::any('demo','userapi/v1.File/addFile');
 

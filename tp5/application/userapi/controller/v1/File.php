@@ -17,7 +17,8 @@ use think\Request;
 class File extends UserApi
 {
     protected $no_need_token = [
-        'addFile'
+        'addFile',
+        'downFile'
     ];
 
     /**
@@ -64,5 +65,15 @@ class File extends UserApi
             throw new ParamException($file->getError());
         }
     }
+
+    public function downFile($url = '')
+    {
+        $url = 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKFmdEQ797aNMwyzpn5m4gGuHMJE8CNHge0Diabadq9guyvXyVxRIT7IbEWrBL2Clh5G6AXQUlwSvA/132';
+
+        $result = downFileImg($url);
+        print_r($result);exit;
+
+    }
+
 
 }
