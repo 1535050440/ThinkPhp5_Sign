@@ -36,8 +36,8 @@ class Test extends Command
     protected function execute(Input $input, Output $output)
     {
         $userList = UserModel::field('id,avatar')
-            ->where('id','<',9)
-//                ->where('id','<',300)
+//            ->where('id','<',9)
+            ->where('id','>=',9)
             ->where('avatar','not null')
             ->select()
             ->toArray();
