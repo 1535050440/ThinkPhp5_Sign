@@ -20,7 +20,7 @@ class Test extends Command
 
     protected function execute(Input $input, Output $output)
     {
-        $userList = UserModel::field('id,avatar')->where('id','<',50)
+        $userList = UserModel::field('id,avatar')->where('id','<',200)
             ->where('avatar','not null')
             ->select()
             ->toArray();

@@ -11,10 +11,14 @@ namespace app\userapi\controller\v1;
 
 use AlibabaCloud\Client\Exception\ClientException;
 use app\common\exception\ParamException;
+use app\common\model\SmsModel;
 use app\common\model\UserModel;
 use app\userapi\controller\UserApi;
 use DengTp5\AliSms;
+use think\db\exception\DataNotFoundException;
+use think\db\exception\ModelNotFoundException;
 use think\exception\DbException;
+use think\facade\Cache;
 use think\facade\Log;
 use think\Request;
 
@@ -73,7 +77,15 @@ class User extends UserApi
         $list_rows = $request->param('list_rows')?:100;
         $page = $request->param('page')?:1;
 
-        $result = UserModel::getUserList($list_rows, $page);
+        $result = Cache::get('user_list');
+        if (!$result) {
+            $result = UserModel::getUserList($list_rows, $page);
+
+            $result = json_encode($result);
+            Cache::set('user_list',$result,60*1);
+        }
+
+        $result = json_decode($result);
 
         $this->success($result);
 
@@ -92,7 +104,6 @@ class User extends UserApi
         $nick_name = $request->param('nick_name');
         $sex = $request->param('sex');
         $avatar = $request->param('avatar');
-//        $mobile = $request->param('mobile');
         $birthday = $request->param('birthday');
         $real_name = $request->param('real_name');
 
@@ -100,7 +111,6 @@ class User extends UserApi
         if ($nick_name) $paramArray['nick_name'] = base64_encode($nick_name);
         if ($sex) $paramArray['sex'] = $sex==1?:2;
         if ($avatar) $paramArray['avatar'] = $avatar;
-//        if ($mobile) $paramArray['mobile'] = $mobile;
         if ($birthday) $paramArray['birthday'] = $birthday;
         if ($real_name) $paramArray['real_name'] = $real_name;
 
@@ -116,21 +126,40 @@ class User extends UserApi
      * mobile               手机号
      * yzm                  验证码
      * @param Request $request
-     * @throws ClientException
+     * @throws DbException
+     * @throws ParamException
+     * @throws DataNotFoundException
+     * @throws ModelNotFoundException
      * @author deng    (2019/8/17 9:51)
      */
     public function updateUserMobile(Request $request)
     {
         $mobile = $request->param('mobile');
         $yzm = $request->param('yzm');
+        isMobile($mobile);
+        if (!$yzm) {
+            throw new ParamException('请输入验证码');
+        }
+
+        $smsFind = SmsModel::where('mobile','=',$mobile)
+            ->where('code','=',$yzm)
+            ->order('id desc')
+            ->find();
+        if (empty($smsFind)) {
+            throw new ParamException('该手机号未发送验证码');
+        }
+        if ($smsFind->code != $yzm) {
+            throw new ParamException('验证码错误，请重新输入');
+        }
 
         $paramArray = [
             'mobile' => $mobile
         ];
-        AliSms::sendSms();
 
         $userFind = UserModel::get($request->user->id);
         $userFind->updateUserInfo($paramArray);
+
+        $this->success($mobile);
 
     }
 

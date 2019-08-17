@@ -10,6 +10,7 @@ namespace app\userapi\controller\v1;
 
 
 use app\common\exception\ParamException;
+use app\common\model\SettingModel;
 use app\userapi\controller\UserApi;
 use think\facade\Env;
 use think\Request;
@@ -70,8 +71,15 @@ class File extends UserApi
     {
         $url = 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKFmdEQ797aNMwyzpn5m4gGuHMJE8CNHge0Diabadq9guyvXyVxRIT7IbEWrBL2Clh5G6AXQUlwSvA/132';
 
-        $result = downFileImg($url);
-        print_r($result);exit;
+//        $result = downFileImg($url);
+
+        $result = SettingModel::getSettingFind('web','web_url');
+
+        print_r($result);
+
+
+
+//        print_r($result);exit;
 
     }
 
