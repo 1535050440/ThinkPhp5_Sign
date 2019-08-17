@@ -12,7 +12,11 @@
 // 应用公共文件
 
 
-function curlText($content,$ACCESS_TOKEN){
+use AlibabaCloud\Client\Exception\ClientException;
+use app\common\exception\ParamException;
+use DengTp5\AliSms;
+
+function curlText($content, $ACCESS_TOKEN){
     $url = "https://api.weixin.qq.com/wxa/msg_sec_check?access_token=".$ACCESS_TOKEN;
     $file_data = '{ "content":"'.$content.'" }';//$content(需要检测的文本内容，最大520KB)
     $ch = curl_init();
@@ -43,4 +47,47 @@ function downloadFile($url, $path = 'images/')
     $resource = fopen($path . $filename, 'a');
     fwrite($resource, $file);
     fclose($resource);
+}
+
+/**
+ * 正则表达式-效验手机号
+ * @param $mobile
+ * @param string $msg
+ * @return string
+ * @throws ParamException
+ * @author deng    (2019/8/17 10:03)
+ */
+function isMobile($mobile, $msg = '手机号格式错误')
+{
+    $pattern = '/^(1)[0-9]{10}$/';
+
+    if (!preg_match($pattern, $mobile)) {
+        throw new ParamException($msg);
+    }
+
+    return true;
+}
+
+/**
+ * 发送验证码公共方法
+ * @param $mobile
+ * @param $code
+ * @return array
+ * @throws ClientException
+ * @author deng    (2019/8/17 10:55)
+ */
+function sendSms($mobile, $code)
+{
+    $condition = [
+        'accessKeyId' => config('sms.accessKeyId'),
+        'accessSecret' => config('sms.accessSecret'),
+        'code' => $code,
+        'mobile' => $mobile,
+        'signName' => config('sms.signName'),
+        'templateCode' => config('sms.templateCode'),
+    ];
+
+    $sendSms = AliSms::sendSms($condition);
+
+    return $sendSms;
 }

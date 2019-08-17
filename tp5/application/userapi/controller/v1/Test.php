@@ -2,8 +2,11 @@
 
 namespace app\userapi\controller\v1;
 
+use AlibabaCloud\Client\Exception\ClientException;
+use app\common\exception\ParamException;
 use app\common\model\UserModel;
 use app\userapi\controller\UserApi;
+use think\Config;
 use think\facade\Cache;
 use think\facade\Env;
 use think\Request;
@@ -98,8 +101,21 @@ class Test extends UserApi
     }
 
 
-    public function redis()
+    /**
+     * @param Request $request
+     * @throws ClientException
+     * @throws ParamException
+     * @author deng    (2019/8/17 10:17)
+     */
+    public function redis(Request $request)
     {
+        $mobile = $request->param('mobile');
+        $a = sendSms($mobile);
+
+        var_dump($a);
+        exit;
+        $mobile = null;
+        isMobile($mobile);
         // 使用Redis缓存
         Cache::store('redis')->set('name','value',3600);
         Cache::store('redis')->get('name');

@@ -27,6 +27,12 @@ use think\Paginator;
 class UserModel extends BaseModel
 {
     protected $name = 'user';
+    private $real_name;
+    private $sex;
+    private $mobile;
+    private $nick_name;
+    private $avatar;
+    private $birthday;
 
     /**
      * 获取nick_name
@@ -350,4 +356,28 @@ class UserModel extends BaseModel
         return $addUserAutograph;
     }
 
+    /**
+     * 修改用户个人信息
+     * @param array $paramArray
+     * @return bool
+     * @author deng    (2019/8/16 15:32)
+     */
+    public function updateUserInfo($paramArray = [])
+    {
+        if (empty($paramArray)) {
+            return true;
+        }
+
+        $userFind = self::get($this->id);
+
+        if (!empty($paramArray['mobile']))  $userFind->mobile = $paramArray['mobile'];
+        if (!empty($paramArray['sex']))  $userFind->sex = $paramArray['sex'];
+        if (!empty($paramArray['nick_name']))  $userFind->nick_name = $paramArray['nick_name'];
+        if (!empty($paramArray['avatar']))  $userFind->avatar = $paramArray['avatar'];
+        if (!empty($paramArray['birthday']))  $userFind->birthday = $paramArray['birthday'];
+        if (!empty($paramArray['real_name']))  $userFind->real_name = $paramArray['real_name'];
+
+        return $userFind->save();
+
+    }
 }

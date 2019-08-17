@@ -20,7 +20,8 @@
         "topthink/framework": "5.1.*",
         "deng-tp5/wx-login": "dev-master",
       "ext-json": "*",
-      "ext-curl": "*"
+      "ext-curl": "*",
+        "deng-tp5/alisms": "dev-master"
     },
     "autoload": {
         "psr-4": {

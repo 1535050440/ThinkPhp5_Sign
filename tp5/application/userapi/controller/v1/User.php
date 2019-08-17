@@ -9,9 +9,12 @@
 namespace app\userapi\controller\v1;
 
 
+use AlibabaCloud\Client\Exception\ClientException;
 use app\common\exception\ParamException;
 use app\common\model\UserModel;
 use app\userapi\controller\UserApi;
+use DengTp5\AliSms;
+use think\exception\DbException;
 use think\facade\Log;
 use think\Request;
 
@@ -62,7 +65,7 @@ class User extends UserApi
 
     /**
      * @param Request $request
-     * @throws \think\exception\DbException
+     * @throws DbException
      * @deng      2019/8/8    20:37
      */
     public function getUserList(Request $request)
@@ -73,6 +76,61 @@ class User extends UserApi
         $result = UserModel::getUserList($list_rows, $page);
 
         $this->success($result);
+
+    }
+
+    /**
+     * 修改用户的个人信息api
+     * nick_name                微信昵称
+     * sex                      微信性别
+     * avatar                   微信头像
+     * @param Request $request
+     * @author deng    (2019/8/16 15:30)
+     */
+    public function updateUserInfo(Request $request)
+    {
+        $nick_name = $request->param('nick_name');
+        $sex = $request->param('sex');
+        $avatar = $request->param('avatar');
+//        $mobile = $request->param('mobile');
+        $birthday = $request->param('birthday');
+        $real_name = $request->param('real_name');
+
+        $paramArray = [];
+        if ($nick_name) $paramArray['nick_name'] = base64_encode($nick_name);
+        if ($sex) $paramArray['sex'] = $sex==1?:2;
+        if ($avatar) $paramArray['avatar'] = $avatar;
+//        if ($mobile) $paramArray['mobile'] = $mobile;
+        if ($birthday) $paramArray['birthday'] = $birthday;
+        if ($real_name) $paramArray['real_name'] = $real_name;
+
+        $userFind = UserModel::get($request->user->id);
+        $userFind->updateUserInfo($paramArray);
+
+        $this->success('修改成功');
+
+    }
+
+    /**
+     * 修改手机号
+     * mobile               手机号
+     * yzm                  验证码
+     * @param Request $request
+     * @throws ClientException
+     * @author deng    (2019/8/17 9:51)
+     */
+    public function updateUserMobile(Request $request)
+    {
+        $mobile = $request->param('mobile');
+        $yzm = $request->param('yzm');
+
+        $paramArray = [
+            'mobile' => $mobile
+        ];
+        AliSms::sendSms();
+
+        $userFind = UserModel::get($request->user->id);
+        $userFind->updateUserInfo($paramArray);
 
     }
 
