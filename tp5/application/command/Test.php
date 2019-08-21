@@ -3,6 +3,7 @@
 namespace app\command;
 
 use app\common\model\UserModel;
+use app\common\model\UserSignModel;
 use think\console\Command;
 use think\console\Input;
 use think\console\Output;
@@ -35,6 +36,27 @@ class Test extends Command
      */
     protected function execute(Input $input, Output $output)
     {
+        for($i = 0;$i<20;$i++) {
+            $user_id = 1001;
+            $userSign = UserSignModel::where('user_id','=',$user_id)
+                ->find();
+            if (!$userSign) {
+                UserSignModel::create([
+                    'user_id' => $user_id,
+                    'add_time' => time(),
+                    'create_time' => date('Y-m-d H:i:s')
+                ]);
+                echo '【'.$i.'】\n';
+            }
+
+        }
+
+        echo 'success';
+        exit;
+
+
+
+
         $userList = UserModel::field('id,avatar')
 //            ->where('id','<',9)
             ->where('id','>=',9)

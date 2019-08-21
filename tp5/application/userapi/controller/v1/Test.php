@@ -2,11 +2,12 @@
 
 namespace app\userapi\controller\v1;
 
-use AlibabaCloud\Client\Exception\ClientException;
 use app\common\exception\ParamException;
-use app\common\model\UserModel;
+use app\common\model\UserSignModel;
 use app\userapi\controller\UserApi;
-use think\Config;
+use think\db\exception\DataNotFoundException;
+use think\db\exception\ModelNotFoundException;
+use think\exception\DbException;
 use think\facade\Cache;
 use think\facade\Env;
 use think\Request;
@@ -16,7 +17,8 @@ class Test extends UserApi
     protected $no_need_token = [
         'test',
         'info',
-        'downFile'
+        'downFile',
+        'redis'
     ];
 
     /**
@@ -103,23 +105,103 @@ class Test extends UserApi
 
 
     /**
+     * 测试使用-
      * @param Request $request
-     * @throws ClientException
+     * @throws DataNotFoundException
+     * @throws DbException
+     * @throws ModelNotFoundException
      * @throws ParamException
      * @author deng    (2019/8/17 10:17)
      */
     public function redis(Request $request)
     {
-        $mobile = $request->param('mobile');
-        $a = sendSms($mobile);
+        $expire_time = 60*5;
+        $user_id = 6000;
+        $key = 'deng_user_sign'.$user_id;
+        $key_tp = 'user_sign'.$user_id;
+        $egg_order = 25;
 
-        var_dump($a);
+        //  先
+
+        $redis = new \Redis();
+        $redis->connect('127.0.0.1',6379);
+//        Cache::store('redis')->set($key, $egg_order, $expire_time);
+        $redis->select(0);
+
+        //  1.先加锁--再get----在
+        $redis_user_locak = $redis->setnx($key,1);
+
+        if ($redis_user_locak) {
+            //  true
+            Cache::store('redis')->set($key_tp, $egg_order, $expire_time);
+            echo '===';
+            UserSignModel::create([
+                'user_id' => $user_id,
+                'add_time' => time(),
+                'create_time' => date('Y-m-d H:i:s')
+            ]);
+
+        } else {
+            $key_tp_xx = $key_tp.rand(1000,999);
+            Cache::store('redis')->set($key_tp_xx, $egg_order, $expire_time);
+        }
+
+        echo 'success';
         exit;
-        $mobile = null;
-        isMobile($mobile);
-        // 使用Redis缓存
-        Cache::store('redis')->set('name','value',3600);
-        Cache::store('redis')->get('name');
+
+
+
+//        $redis_activity_num = Cache::store('redis')->get($key);
+//        Cache::set('user_sign','sign',60*1);
+//        Cache::store('redis')->dec($key);
+//        exit;
+        $redis_data = Cache::store('redis')->get($key);
+//        print_r($ca);exit;
+        if (empty($redis_data)) {
+            //  为空时，进行抽奖
+            //  写入缓存
+            $redis_user_locak->setnx($key,1);
+            Cache::store('redis')->set($key, $egg_order, $expire_time);
+            $userSign = UserSignModel::where('user_id','=',$user_id)
+                ->lock(true)
+                ->find();
+            if (!$userSign) {
+                UserSignModel::create([
+                    'user_id' => $user_id,
+                    'add_time' => time(),
+                    'create_time' => date('Y-m-d H:i:s')
+                ]);
+            }
+        } else {
+            throw new ParamException('您已抽奖');
+        }
+
+
+        echo 'success';
+        exit;
+        $activity = [
+            'id' => 1,  //  活动id
+            'start_time' => $start_time,        //  活动开始时间
+            'end_time' => $end_time,            //  活动结束时间
+        ];
+        $array = [
+            'activity' => $activity,
+        ];
+
+
+        print_r($array);
+        echo 1;exit;
+
+//        $mobile = $request->param('mobile');
+//        $a = sendSms($mobile);
+//
+//        var_dump($a);
+//        exit;
+//        $mobile = null;
+//        isMobile($mobile);
+//         使用Redis缓存
+//        Cache::store('redis')->set('name','value',3600);
+//        Cache::store('redis')->get('name');
 
 
     }

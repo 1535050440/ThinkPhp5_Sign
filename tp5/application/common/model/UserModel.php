@@ -387,4 +387,21 @@ class UserModel extends BaseModel
         return $userFind->save();
 
     }
+
+    /**
+     * @param $content
+     * @return bool
+     * @author deng    (2019/8/22 0:33)
+     */
+    public function addUserChat($content)
+    {
+        UserChatModel::create([
+            'user_id' => $this->id,
+            'content' => $content,
+            'add_time' => time(),
+            'create_time' => date('Y-m-d H:i:s')
+        ]);
+
+        return true;
+    }
 }

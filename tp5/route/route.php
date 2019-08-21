@@ -29,6 +29,10 @@ Route::get('userapi/v1/user_autograph/index','userapi/v1.UserAutograph/index');
 Route::get('userapi/v1/user_autograph/list','userapi/v1.UserAutograph/getAutograph');
 Route::get('userapi/v1/user_autograph/getList','userapi/v1.UserAutograph/getList');
 
+//  聊天
+Route::get('userapi/v1/user_chat/add','userapi/v1.UserChat/add');
+
+
 //  版本更新日志
 Route::get('userapi/v1/version/list','userapi/v1.VersionLog/index');
 

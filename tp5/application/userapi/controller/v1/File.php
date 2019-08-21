@@ -69,6 +69,10 @@ class File extends UserApi
 
     public function downFile($url = '')
     {
+//        $a = '本产品基于color-ui开源模板优化';
+//
+//        echo base64_encode($a);exit;
+//        echo 2;exit;
         $url = 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKFmdEQ797aNMwyzpn5m4gGuHMJE8CNHge0Diabadq9guyvXyVxRIT7IbEWrBL2Clh5G6AXQUlwSvA/132';
 
 //        $result = downFileImg($url);
@@ -80,6 +84,12 @@ class File extends UserApi
 
 
 //        print_r($result);exit;
+
+
+
+
+
+
 
     }
 
