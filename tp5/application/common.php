@@ -142,3 +142,64 @@ function downFileImg($url)
 
     return $result;
 }
+
+
+/**
+ * 下载远程文件
+ * @param string $url
+ * @param string $type
+ * @return array
+ * @throws ParamException
+ * @author deng    (2019/8/17 15:40)
+ */
+function downFile($url, $type = 'png')
+{
+    $pattern="/^.*(jpg|jpeg|gif|png|pdf|mp4)$/";
+    if (!preg_match($pattern,$url)) {
+        throw new ParamException('文件类型错误');
+    }
+
+    $url = str_replace("\\",'/',$url);
+
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+    $info = curl_exec($curl);
+    curl_close($curl);
+
+    //  指定目录   E:\phpStudy\PHPTutorial\WWW\qq151551519-sign-tp5\tp5\public\uploads
+    $ROOT_PATH = Env::get('root_path');
+    $img_path = DIRECTORY_SEPARATOR . 'uploads'.DIRECTORY_SEPARATOR.date('Ymd').DIRECTORY_SEPARATOR;
+    $address = $ROOT_PATH . 'public' . $img_path;
+
+    //创建保存目录
+    if (!file_exists($address) && !mkdir($address, 0777, true)) {
+        $result = [
+            'status' => false
+        ];
+    } else {
+        $date_time = substr(date('Y'),2,2).date('md');
+        $img_name = $date_time.time().rand(1000,9999).'.'.$type;
+
+        //  保存的本地地址及文件名
+        $newFileName = $address.$img_name;
+        $fp2 = @fopen($newFileName, "a");
+        fwrite($fp2, $info);
+        fclose($fp2);
+
+        $img_path_data = $img_path.$img_name;
+        $img_path_data = str_replace("\\",'/',$img_path_data);
+
+        $result = [
+            'img_name' => $img_name,
+            'img_type' => $type,
+            'status' => true,
+            'img_path' => $img_path_data
+        ];
+    }
+
+    return $result;
+}

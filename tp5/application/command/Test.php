@@ -36,40 +36,21 @@ class Test extends Command
      */
     protected function execute(Input $input, Output $output)
     {
-        for($i = 0;$i<20;$i++) {
-            $user_id = 1001;
-            $userSign = UserSignModel::where('user_id','=',$user_id)
-                ->find();
-            if (!$userSign) {
-                UserSignModel::create([
-                    'user_id' => $user_id,
-                    'add_time' => time(),
-                    'create_time' => date('Y-m-d H:i:s')
-                ]);
-                echo '【'.$i.'】\n';
-            }
-
-        }
-
-        echo 'success';
-        exit;
-
-
-
-
         $userList = UserModel::field('id,avatar')
-//            ->where('id','<',9)
-            ->where('id','>=',9)
+            ->where('id','=',2)
+//            ->where('id','<',50)
+//            ->where('id','>=',9)
             ->where('avatar','not null')
             ->select()
             ->toArray();
 
         foreach ($userList as $user) {
             $avatar = $user['avatar'];
-            $result = downFileImg($avatar);
+//            $result = downFileImg($avatar);
+            $result = downFile($avatar);
 
-            UserModel::where('id','=',$user['id'])
-                ->update(['avatar'=>$result['img_path']]);
+//            UserModel::where('id','=',$user['id'])
+//                ->update(['avatar'=>$result['img_path']]);
             echo '【'.$user['id'].'】==='.$result['img_path'];
             echo "\n";
         }

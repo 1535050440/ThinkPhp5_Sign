@@ -31,7 +31,7 @@ class UserChat extends UserApi
 
         $userFind = UserModel::get($request->user->id);
 
-        $userFind->addUserChat($content);
+        $userFind->addUserChat($to_id, $content);
 
         $this->success('发送成功');
     }

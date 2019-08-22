@@ -389,14 +389,16 @@ class UserModel extends BaseModel
     }
 
     /**
+     * @param $to_id
      * @param $content
      * @return bool
      * @author deng    (2019/8/22 0:33)
      */
-    public function addUserChat($content)
+    public function addUserChat($to_id, $content)
     {
         UserChatModel::create([
             'user_id' => $this->id,
+            'to_id' => $to_id,
             'content' => $content,
             'add_time' => time(),
             'create_time' => date('Y-m-d H:i:s')
