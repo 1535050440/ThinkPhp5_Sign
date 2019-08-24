@@ -150,7 +150,7 @@ class UserAutograph extends UserApi
             $this->success();
         }
 
-        //  验证是否格式正确
+        //  验证内容是否合法
         $this->checkCopyContent($content, $request->user->access_token);
 
         //  是否定义过
