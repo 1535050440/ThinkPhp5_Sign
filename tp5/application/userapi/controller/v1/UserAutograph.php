@@ -17,6 +17,7 @@ use app\userapi\controller\UserApi;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
 use think\exception\DbException;
+use think\facade\Cache;
 use think\facade\Log;
 use think\Request;
 
@@ -149,6 +150,9 @@ class UserAutograph extends UserApi
             $this->success();
         }
 
+        //  验证是否格式正确
+        $this->checkCopyContent($content, $request->user->access_token);
+
         //  是否定义过
         $statusText = $this->checkCopy($content);
         Log::record($statusText,'demo');
@@ -223,6 +227,21 @@ class UserAutograph extends UserApi
             'text_base' => $content_now
         ];
         $this->success($result);
+    }
+
+    /**
+     * $content = '特3456书yuuo莞6543李zxcz蒜7782法fgnv级完2347全dfji试3726测asad感3847知qwez到';
+     * @param $content
+     * @param $access_token
+     * @throws ParamException
+     * @author deng    (2019/8/24 10:47)
+     */
+    public function checkCopyContent($content,$access_token)
+    {
+        $result = curlText($content,$access_token);
+        if ($result->errcode == '87014') {
+            throw new ParamException('内容包含敏感信息，请从新输入！');
+        }
     }
 
     public function checkCopy($content)
@@ -325,10 +344,19 @@ class UserAutograph extends UserApi
         $list_rows = $request->param('list_rows')?:30;
         $page = $request->param('page')?:1;
 
-        $result = AutographModel::field('*')
-            ->order('order_id asc')
-            ->where('is_show','=',1)
-            ->paginate($list_rows,false,['page'=>$page]);
+        $result = Cache::get('template');
+        if (!$result) {
+            $time = 60*60*2;
+            $result = AutographModel::field('*')
+                ->order('order_id asc')
+                ->where('is_show','=',1)
+                ->paginate($list_rows,false,['page'=>$page]);
+
+            $result = json_encode($result);
+            Cache::set('template',$result,$time);
+        }
+
+        $result = json_decode($result);
 
         $this->success($result);
 
