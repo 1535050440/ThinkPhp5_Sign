@@ -174,7 +174,7 @@ class User extends UserApi
      */
     public function getRegister(Request $request)
     {
-        $yesterday = strtotime("-1 day");
+        $yesterday = strtotime(date('Y-m-d',strtotime("-1 day")));;
         $today = strtotime(date('Y-m-d',time()));
 
         $yesterday_count = UserModel::where('add_time','>=',$yesterday)
