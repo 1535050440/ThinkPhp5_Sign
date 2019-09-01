@@ -25,6 +25,10 @@ use think\Request;
 
 class User extends UserApi
 {
+    protected $no_need_token = [
+        'getRegister'
+    ];
+
     public function show()
     {
         Log::record(222,'demo');
