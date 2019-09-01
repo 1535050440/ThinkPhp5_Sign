@@ -17,6 +17,7 @@ use app\userapi\controller\UserApi;
 use DengTp5\AliSms;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
+use think\db\Where;
 use think\exception\DbException;
 use think\facade\Cache;
 use think\facade\Log;
@@ -163,4 +164,27 @@ class User extends UserApi
 
     }
 
+    /**
+     * 注册人数：昨天/今天
+     * @param Request $request
+     */
+    public function getRegister(Request $request)
+    {
+        $yesterday = strtotime("-1 day");
+        $today = strtotime(date('Y-m-d',time()));
+
+        $yesterday_count = UserModel::where('add_time','>=',$yesterday)
+            ->Where('add_time','<=',$today)
+            ->count();
+
+        $today_count = UserModel::Where('add_time','>',$today)
+            ->count();
+
+        $result = [
+            'yesterday_count' => $yesterday_count,
+            'today_count' => $today_count
+        ];
+
+        $this->success($result);
+    }
 }
