@@ -13,6 +13,9 @@ use \think\facade\Route;
 
 //  ============================================================
 
+//  获取轮播图
+Route::get('userapi/v1/banner_list','userapi/v1.Banner/getBannerList');
+
 //  登陆
 Route::get('userapi/v1/login','userapi/v1.Login/login');
 
