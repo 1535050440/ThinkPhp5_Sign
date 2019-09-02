@@ -59,12 +59,7 @@ class UserModel extends BaseModel
      */
     public function getAvatarAttr($value)
     {
-//        $web_path = SettingModel::getSettingFind('web','web_path');
-
         $web_path = 'https://dengshipeng.top';
-
-
-        return $value;
         return $web_path.$value;
     }
 
