@@ -156,7 +156,7 @@ function downFile($url, $type = 'png')
 {
     $pattern="/^.*(jpg|jpeg|gif|png|pdf|mp4)$/";
     if (!preg_match($pattern,$url)) {
-        throw new ParamException('文件类型错误');
+//        throw new ParamException('文件类型错误');
     }
 
     $url = str_replace("\\",'/',$url);
@@ -182,7 +182,7 @@ function downFile($url, $type = 'png')
         ];
     } else {
         $date_time = substr(date('Y'),2,2).date('md');
-        $img_name = $date_time.time().rand(1000,9999).'.'.$type;
+        $img_name = $date_time.'_'.time().rand(1000,9999).'.'.$type;
 
         //  保存的本地地址及文件名
         $newFileName = $address.$img_name;

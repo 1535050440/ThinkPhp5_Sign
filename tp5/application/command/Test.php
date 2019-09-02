@@ -37,7 +37,7 @@ class Test extends Command
     protected function execute(Input $input, Output $output)
     {
         $userList = UserModel::field('id,avatar')
-            ->where('id','=',2)
+            ->where('id','=',8)
 //            ->where('id','<',50)
 //            ->where('id','>=',9)
             ->where('avatar','not null')
@@ -46,6 +46,7 @@ class Test extends Command
 
         foreach ($userList as $user) {
             $avatar = $user['avatar'];
+//            echo $avatar;exit;
 //            $result = downFileImg($avatar);
             $result = downFile($avatar);
 
