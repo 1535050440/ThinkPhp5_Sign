@@ -37,21 +37,20 @@ class Test extends Command
     protected function execute(Input $input, Output $output)
     {
         $userList = UserModel::field('id,avatar')
-            ->where('id','=',8)
-//            ->where('id','<',50)
-//            ->where('id','>=',9)
+            ->where('avatar','like','%'.'wx.qlogo.cn'.'%')
             ->where('avatar','not null')
             ->select()
             ->toArray();
 
-        foreach ($userList as $user) {
-            $avatar = $user['avatar'];
-//            echo $avatar;exit;
-//            $result = downFileImg($avatar);
-            $result = downFile($avatar);
+        echo count($userList);
+        echo "\n";
 
-//            UserModel::where('id','=',$user['id'])
-//                ->update(['avatar'=>$result['img_path']]);
+
+        foreach ($userList as $user) {
+            $result = downFile($user['avatar']);
+
+            UserModel::where('id','=',$user['id'])
+                ->update(['avatar'=>$result['img_path']]);
             echo '【'.$user['id'].'】==='.$result['img_path'];
             echo "\n";
         }
