@@ -59,8 +59,14 @@ class UserModel extends BaseModel
      */
     public function getAvatarAttr($value)
     {
-        $web_path = 'https://dengshipeng.top';
-        return $web_path.$value;
+        $array = explode('wx.qlogo.cn',$value);
+
+        if (count($array) >1) {
+            return $value;
+        } else {
+            $web_path = 'https://dengshipeng.top';
+            return $web_path.$value;
+        }
     }
 
     /**
