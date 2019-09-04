@@ -26,7 +26,8 @@ use think\Request;
 class User extends UserApi
 {
     protected $no_need_token = [
-        'getRegister'
+        'getRegister',
+        'getAvatarList'
     ];
 
     public function show()
@@ -191,4 +192,29 @@ class User extends UserApi
 
         $this->success($result);
     }
+
+    /**
+     * @param Request $request
+     * @throws DbException
+     */
+    public function getAvatarList(Request $request)
+    {
+        $list_rows = $request->param('list_rows')?:50;
+
+        $getAvatarList = Cache::get('user_avatar_list');
+        if (!$getAvatarList) {
+            $getAvatarList = UserModel::field('id,avatar')
+                ->where('avatar','not null')
+                ->order('a.id desc')
+                ->paginate($list_rows);
+
+            $getAvatarList = json_encode($getAvatarList);
+            Cache::set('user_avatar_list',$getAvatarList,60*30);
+        }
+
+        $getAvatarList = json_decode($getAvatarList);
+
+        $this->success($getAvatarList);
+    }
+
 }

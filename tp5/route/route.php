@@ -43,6 +43,8 @@ Route::get('userapi/v1/version/list','userapi/v1.VersionLog/index');
 
 
 Route::get('userapi/v1/nav/index','userapi/v1.Nav/index');
+//  获取用户头像
+Route::get('userapi/v1/avatar/index','userapi/v1.User/getAvatarList');
 
 
 
