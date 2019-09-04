@@ -199,7 +199,7 @@ class User extends UserApi
      */
     public function getAvatarList(Request $request)
     {
-        $list_rows = $request->param('list_rows')?:50;
+        $list_rows = $request->param('list_rows')?:1000;
 
         $getAvatarList = Cache::get('user_avatar_list');
         if (!$getAvatarList) {
