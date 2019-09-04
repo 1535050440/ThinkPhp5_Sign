@@ -205,7 +205,7 @@ class User extends UserApi
         if (!$getAvatarList) {
             $getAvatarList = UserModel::field('id,avatar')
                 ->where('avatar','not null')
-                ->order('a.id desc')
+                ->order('id desc')
                 ->paginate($list_rows);
 
             $getAvatarList = json_encode($getAvatarList);
