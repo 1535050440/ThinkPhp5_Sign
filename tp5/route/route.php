@@ -41,6 +41,11 @@ Route::get('userapi/v1/user_chat/add','userapi/v1.UserChat/add');
 //  版本更新日志
 Route::get('userapi/v1/version/list','userapi/v1.VersionLog/index');
 
+
+Route::get('userapi/v1/nav/index','userapi/v1.Nav/index');
+
+
+
 //  ============================================================
 Route::any('redis','userapi/v1.Test/redis');
 Route::any('test','userapi/v1.Test/test');
