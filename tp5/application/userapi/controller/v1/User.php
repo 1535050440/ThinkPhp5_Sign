@@ -201,7 +201,7 @@ class User extends UserApi
     {
         $list_rows = $request->param('list_rows')?:1000;
 
-        $getAvatarList = Cache::get('user_avatar_list');
+        $getAvatarList = Cache::get('user_avatar_list'.$list_rows);
         if (!$getAvatarList) {
             $getAvatarList = UserModel::field('id,avatar')
                 ->where('avatar','not null')
@@ -209,7 +209,7 @@ class User extends UserApi
                 ->paginate($list_rows);
 
             $getAvatarList = json_encode($getAvatarList);
-            Cache::set('user_avatar_list',$getAvatarList,60*30);
+            Cache::set('user_avatar_list'.$list_rows,$getAvatarList,60*30);
         }
 
         $getAvatarList = json_decode($getAvatarList);
