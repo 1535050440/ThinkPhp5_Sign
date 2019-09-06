@@ -80,7 +80,7 @@ class User extends UserApi
      */
     public function getUserList(Request $request)
     {
-        $list_rows = $request->param('list_rows')?:100;
+        $list_rows = $request->param('list_rows')?:50;
         $page = $request->param('page')?:1;
 
         $result = Cache::get('user_list');
@@ -88,7 +88,7 @@ class User extends UserApi
             $result = UserModel::getUserList($list_rows, $page);
 
             $result = json_encode($result);
-            Cache::set('user_list',$result,60*1);
+            Cache::set('user_list',$result,60*5);
         }
 
         $result = json_decode($result);
@@ -199,7 +199,7 @@ class User extends UserApi
      */
     public function getAvatarList(Request $request)
     {
-        $list_rows = $request->param('list_rows')?:600;
+        $list_rows = $request->param('list_rows')?:300;
 
         $getAvatarList = Cache::get('user_avatar_list'.$list_rows);
         if (!$getAvatarList) {
