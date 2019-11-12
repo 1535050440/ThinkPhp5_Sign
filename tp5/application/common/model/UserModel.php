@@ -64,7 +64,7 @@ class UserModel extends BaseModel
         if (count($array) >1) {
             return $value;
         } else {
-            $web_path = 'https://dengshipeng.top';
+            $web_path = 'https://sign.myphp.vip';
             return $web_path.$value;
         }
     }
